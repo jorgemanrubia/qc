@@ -1,11 +1,13 @@
 require "test_helper"
 
-class QcTest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::Qc::VERSION
-  end
+class QcTest < SystemTest
+  def test_it_does_something
+    run_command 'qc'
+    type 'pepe'
+    last_command_started.stop
 
-  def test_it_does_something_useful
-    assert false
+    puts "*"*100
+    puts last_command_started.output
+    puts "*"*100
   end
 end

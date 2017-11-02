@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+name = gets.chomp
+puts "Hola #{name}!"
+exit 0

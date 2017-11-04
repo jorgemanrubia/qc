@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
-name = gets.chomp
-puts "Hola #{name}!"
-exit 0
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+require 'qc'
+
+Qc::Client.new.run

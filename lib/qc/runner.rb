@@ -5,26 +5,43 @@ module Qc
 
     def run(argv)
       command = argv[0]
-      client = Qc::Client.new(build_quant_connect_proxy)
-      result = if command
-                 client.execute(command.to_sym)
-               else
-                 client.execute_default
-               end
-      if result
-        exit 0
-      else
-        exit 1
+      client = Qc::Client.new(quant_connect_proxy)
+      success = begin
+        if command
+          client.execute(command.to_sym)
+        else
+          client.execute_default
+        end
+      rescue StandardError => error
+        puts "Error: #{error}"
+        false
+      ensure
+        dump_quant_connect_proxy if fake_mode?
       end
-    rescue StandardError => error
-      puts "Error: #{error}"
-      exit 1
+
+      exit success ? 0 : 1
     end
 
     private
 
-    def build_quant_connect_proxy
-      Qc::QuantConnectProxy .new(Qc::Credentials.read_from_home)
+    def quant_connect_proxy
+      @quant_connect_proxy ||= begin
+        credentials = Qc::Credentials.read_from_home
+        if fake_mode?
+          Qc::QuantConnectFakeProxy.new(credentials)
+        else
+          Qc::QuantConnectProxy.new(credentials)
+        end
+      end
+    end
+
+    def fake_mode?
+      ENV['FAKE_PROXY']
+    end
+
+    def dump_quant_connect_proxy
+      content = Marshal.dump quant_connect_proxy
+      File.open('.qc/fake_proxy.obj', 'w') {|file| file.write(content) }
     end
   end
 end

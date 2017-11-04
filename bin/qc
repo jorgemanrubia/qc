@@ -5,8 +5,18 @@ require 'qc'
 
 command = ARGV[0]
 
-if command
-  Qc::Client.new.execute(command.to_sym)
-else
-  Qc::Client.new.execute_default
+begin
+  result = if command
+             Qc::Client.new.execute(command.to_sym)
+           else
+             Qc::Client.new.execute_default
+           end
+  if result
+    exit 0
+  else
+    exit 1
+  end
+rescue StandardError => error
+  puts "Error: #{error}"
+  exit 1
 end

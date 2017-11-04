@@ -39,6 +39,7 @@ module Qc
       case command
         when :default
           puts "Default command not implemented yet..."
+          true
         when :login
           execute_login
         when :logout
@@ -55,6 +56,7 @@ module Qc
       puts "Access token:"
       access_token = read_line
       Qc::Credentials.new(user_id, access_token).save_to_home
+      true
     end
 
     def read_line
@@ -64,6 +66,7 @@ module Qc
     def execute_logout
       credentials.destroy
       puts "Logged out successfully"
+      true
     end
   end
 end

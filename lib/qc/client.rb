@@ -41,6 +41,10 @@ module Qc
           puts "Default command not implemented yet..."
         when :login
           execute_login
+        when :logout
+          execute_logout
+        else
+          raise "Unknonw command #{command}"
       end
     end
 
@@ -55,6 +59,11 @@ module Qc
 
     def read_line
       STDIN.gets.chomp
+    end
+
+    def execute_logout
+      credentials.destroy
+      puts "Logged out successfully"
     end
   end
 end

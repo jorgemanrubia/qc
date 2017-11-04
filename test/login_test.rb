@@ -9,15 +9,19 @@ class LoginTest < SystemTest
   def test_login_command_stores_credentials
     assert_no_stored_credentials
 
-    run_command 'qc login'
-    type 'my user id'
-    type 'my access token'
-    last_command_started.stop
+    run_login_command 'my user id', 'my access token'
 
     assert_match /User id/, last_command_started.output
     assert_match /Access token/, last_command_started.output
 
     assert_stored_credentials 'my user id', 'my access token'
+  end
+
+  def test_logout_command_clear_credentials
+    run_login_command 'my user id', 'my access token'
+    run_command_and_stop 'qc logout'
+    puts last_command_started.output
+    assert_no_stored_credentials
   end
 
   private
@@ -34,5 +38,12 @@ class LoginTest < SystemTest
 
   def credentials_file
     File.join(home_dir, '.qc', 'credentials.yml')
+  end
+
+  def run_login_command(user_id, access_token)
+    run_command 'qc login'
+    type user_id
+    type access_token
+    last_command_started.stop
   end
 end

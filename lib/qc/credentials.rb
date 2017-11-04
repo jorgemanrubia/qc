@@ -14,6 +14,10 @@ module Qc
       end
     end
 
+    def destroy
+      FileUtils.remove(self.class.credentials_file)
+    end
+
     def self.credentials_file
       File.join(self.credentials_directory, FILE_NAME)
     end

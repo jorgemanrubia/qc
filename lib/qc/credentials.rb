@@ -8,14 +8,14 @@ module Qc
     end
 
     def save_to_home
-      FileUtils.mkdir_p(Credentials.credentials_directory)
-      File.open(Credentials.credentials_file, 'w') do |file|
+      FileUtils.mkdir_p(self.class.credentials_directory)
+      File.open(self.class.credentials_file, 'w') do |file|
         file.write self.to_yaml
       end
     end
 
     def self.credentials_file
-      File.join(Credentials.credentials_directory, FILE_NAME)
+      File.join(self.credentials_directory, FILE_NAME)
     end
 
     def self.credentials_directory

@@ -3,4 +3,10 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require 'qc'
 
-Qc::Client.new.run
+command = ARGV[0]
+
+if command
+  Qc::Client.new.execute(command.to_sym)
+else
+  Qc::Client.new.execute_default
+end

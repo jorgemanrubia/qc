@@ -4,15 +4,23 @@ module Qc
 
     def self.read_from_home
       return nil unless File.exists?(credentials_file)
-      credentials = YAML.load_file credentials_file
-      puts credentials
-      nil
+      YAML.load_file credentials_file
     end
 
-    private
+    def save_to_home
+      FileUtils.mkdir_p(Credentials.credentials_directory)
+      File.open(Credentials.credentials_file, 'w') do |file|
+        file.write self.to_yaml
+      end
+    end
 
     def self.credentials_file
-      File.join(Dir.home, FILE_NAME)
+      File.join(Credentials.credentials_directory, FILE_NAME)
+    end
+
+    def self.credentials_directory
+      # Not using `Dir.home` because aruba won't let you mock it
+      File.join(ENV['HOME'], '.qc')
     end
   end
 end

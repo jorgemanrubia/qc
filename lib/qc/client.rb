@@ -6,11 +6,21 @@ module Qc
       @credentials = Credentials.read_from_home
     end
 
-    def run
-      require_login do
-
+    def execute(command)
+      if command == :login
+        do_execute(command)
+      else
+        require_login do
+          do_execute(command)
+        end
       end
     end
+
+    def execute_default
+      execute(:default)
+    end
+
+    private
 
     def logged_in?
       !!credentials
@@ -20,9 +30,31 @@ module Qc
       if credentials
         yield
       else
-        puts "Please do login by running 'qc login' first"
+        puts "Please do login by executing 'qc login' first"
         false
       end
+    end
+
+    def do_execute(command)
+      case command
+        when :default
+          puts "Default command not implemented yet..."
+        when :login
+          execute_login
+      end
+    end
+
+    def execute_login
+      puts "Please introduce your QuantConnect credentials. You can find them in your preferences in https://www.quantconnect.com/account."
+      puts "User id:"
+      user_id = read_line
+      puts "Access token:"
+      access_token = read_line
+      Qc::Credentials.new(user_id, access_token).save_to_home
+    end
+
+    def read_line
+      STDIN.gets.chomp
     end
   end
 end

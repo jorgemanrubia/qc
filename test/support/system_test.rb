@@ -5,5 +5,10 @@ class SystemTest < Minitest::Test
 
   def setup
     setup_aruba
+    set_environment_variable 'HOME', home_dir
+  end
+
+  def home_dir
+    expand_path('.')
   end
 end

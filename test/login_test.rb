@@ -15,10 +15,14 @@ class LoginTest < SystemTest
     assert_match /User id/, last_command_started.output
     assert_match /Access token/, last_command_started.output
 
-    credentials = YAML.load_file File.join(home_dir, '.qc', 'credentials.yml')
-    assert 'my user id', credentials['user_id']
-    assert 'my access token', credentials['access_token']
+    assert_credentials_were_stored 'my user id', 'my access token'
   end
 
+  private
 
+  def assert_credentials_were_stored(user_id, access_token)
+    credentials = YAML.load_file File.join(home_dir, '.qc', 'credentials.yml')
+    assert user_id, credentials['user_id']
+    assert access_token, credentials['access_token']
+  end
 end

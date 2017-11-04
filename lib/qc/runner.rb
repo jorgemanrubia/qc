@@ -6,7 +6,8 @@ module Qc
       @quant_connect_proxy = quant_connect_proxy
     end
 
-    def run(command)
+    def run(argv)
+      command = argv[0]
       client = Qc::Client.new(quant_connect_proxy)
       result = if command
                  client.execute(command.to_sym)

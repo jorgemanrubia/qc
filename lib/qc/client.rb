@@ -1,9 +1,13 @@
 module Qc
   class Client
-    attr_reader :credentials
+    attr_reader :quant_connect_proxy
 
-    def initialize
-      @credentials = Credentials.read_from_home
+    def initialize(quant_connect_proxy)
+      @quant_connect_proxy = quant_connect_proxy
+    end
+
+    def credentials
+      quant_connect_proxy&.credentials
     end
 
     def execute(command)
@@ -23,6 +27,7 @@ module Qc
     private
 
     def logged_in?
+      puts "VALUE: #{!!credentials}"
       !!credentials
     end
 

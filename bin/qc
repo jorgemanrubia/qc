@@ -5,11 +5,16 @@ require 'qc'
 
 command = ARGV[0]
 
+def quant_connect_proxy
+  Qc::QuantConnectProxy.new(Qc::Credentials.read_from_home)
+end
+
 begin
+  client = Qc::Client.new(quant_connect_proxy)
   result = if command
-             Qc::Client.new.execute(command.to_sym)
+             client.execute(command.to_sym)
            else
-             Qc::Client.new.execute_default
+             client.execute_default
            end
   if result
     exit 0

@@ -3,5 +3,4 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require 'qc'
 
-quant_connect_proxy = Qc::QuantConnectProxy.new(Qc::Credentials.read_from_home)
-Qc::Runner.new(quant_connect_proxy).run(ARGV)
+Qc::Runner.new.run(ARGV)

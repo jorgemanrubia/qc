@@ -1,14 +1,11 @@
 module Qc
   class Runner
-    attr_reader :quant_connect_proxy
-
-    def initialize(quant_connect_proxy)
-      @quant_connect_proxy = quant_connect_proxy
+    def initialize
     end
 
     def run(argv)
       command = argv[0]
-      client = Qc::Client.new(quant_connect_proxy)
+      client = Qc::Client.new(build_quant_connect_proxy)
       result = if command
                  client.execute(command.to_sym)
                else
@@ -22,6 +19,12 @@ module Qc
     rescue StandardError => error
       puts "Error: #{error}"
       exit 1
+    end
+
+    private
+
+    def build_quant_connect_proxy
+      Qc::QuantConnectProxy .new(Qc::Credentials.read_from_home)
     end
   end
 end

@@ -32,8 +32,6 @@ GEM
     ffi (1.9.18)
     gherkin (4.1.3)
     minitest (5.10.3)
-    minitest-around (0.4.0)
-      minitest (~> 5.0)
     multi_json (1.12.2)
     multi_test (0.1.2)
     rake (10.5.0)
@@ -50,7 +48,6 @@ DEPENDENCIES
   aruba (~> 1.0.0.pre.alpha.2)
   bundler (~> 1.15)
   minitest (~> 5.0)
-  minitest-around (~> 0.4.0)
   qc!
   rake (~> 10.0)
 

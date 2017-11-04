@@ -20,7 +20,6 @@ class LoginTest < SystemTest
   def test_logout_command_clear_credentials
     do_login 'my user id', 'my access token'
     run_command_and_stop 'qc logout'
-    puts last_command_started.output
     assert_no_stored_credentials
   end
 

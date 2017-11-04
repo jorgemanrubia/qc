@@ -3,14 +3,6 @@ require "aruba/api"
 class SystemTest < Minitest::Test
   include Aruba::Api
 
-  def around(&block)
-    Qc::QuantConnectProxy.stub :new, quantconnect_proxy, &block
-  end
-
-  def quantconnect_proxy
-    {}
-  end
-
   def setup
     setup_aruba
     set_environment_variable 'HOME', home_dir

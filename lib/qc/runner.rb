@@ -15,8 +15,6 @@ module Qc
       rescue StandardError => error
         puts "Error: #{error}"
         false
-      ensure
-        dump_quant_connect_proxy if fake_mode?
       end
 
       exit success ? 0 : 1
@@ -25,23 +23,8 @@ module Qc
     private
 
     def quant_connect_proxy
-      @quant_connect_proxy ||= begin
-        credentials = Qc::Credentials.read_from_home
-        if fake_mode?
-          Qc::QuantConnectFakeProxy.new(credentials)
-        else
-          Qc::QuantConnectProxy.new(credentials)
-        end
-      end
+      @quant_connect_proxy ||= Qc::QuantConnectProxy.new(credentials)
     end
 
-    def fake_mode?
-      ENV['FAKE_PROXY']
-    end
-
-    def dump_quant_connect_proxy
-      content = Marshal.dump quant_connect_proxy
-      File.open('.qc/fake_proxy.obj', 'w') {|file| file.write(content) }
-    end
   end
 end

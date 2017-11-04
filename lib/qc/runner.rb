@@ -23,8 +23,7 @@ module Qc
     private
 
     def quant_connect_proxy
-      @quant_connect_proxy ||= Qc::QuantConnectProxy.new(credentials)
+      @quant_connect_proxy ||= Qc::QuantConnectProxy.new(Qc::Credentials.read_from_home)
     end
-
   end
 end

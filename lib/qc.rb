@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'yaml'
+require 'rest-client'
 
 require "qc/version"
 require "qc/credentials"

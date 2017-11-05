@@ -56,15 +56,22 @@ module Qc
 
     def execute_login
       puts "Please introduce your QuantConnect credentials. You can find them in your preferences in https://www.quantconnect.com/account."
-      puts "User id:"
-      user_id = read_line
-      puts "Access token:"
-      access_token = read_line
-      Qc::Credentials.new(user_id, access_token).save_to_home
-      true
+      user_id = ask_for_value 'User id:'
+      access_token = ask_for_value 'Access token:'
+
+      quant_connect_proxy.credentials = Qc::Credentials.new(user_id, access_token)
+
+      if quant_connect_proxy.valid_login?
+        Qc::Credentials.new(user_id, access_token).save_to_home
+        true
+      else
+        puts "Invalid credentials"
+        false
+      end
     end
 
-    def read_line
+    def ask_for_value(question)
+      puts question
       STDIN.gets.chomp
     end
 

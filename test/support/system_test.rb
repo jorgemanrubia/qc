@@ -18,4 +18,8 @@ class SystemTest < Minitest::Test
     type access_token
     last_command_started.stop
   end
+
+  def do_valid_login
+    do_login TestUser::USER_ID, TestUser::ACCESS_TOKEN
+  end
 end

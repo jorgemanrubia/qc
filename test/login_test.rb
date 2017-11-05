@@ -6,19 +6,28 @@ class LoginTest < SystemTest
     assert_match(/Please do login by executing 'qc login' first/, last_command_started.output)
   end
 
-  def test_login_command_stores_credentials
+  def test_valid_login_command_stores_credentials
     assert_no_stored_credentials
 
-    do_login 'my user id', 'my access token'
+    do_valid_login
 
     assert_match(/User id/, last_command_started.output)
     assert_match(/Access token/, last_command_started.output)
 
-    assert_stored_credentials 'my user id', 'my access token'
+    assert_stored_credentials TestUser::USER_ID, TestUser::ACCESS_TOKEN
+    assert_equal 0, last_command_started.exit_status
+  end
+
+  def test_invalid_login_command_wont_store_credentials
+    assert_no_stored_credentials
+    do_login 'some invalid user id', 'some invalid access token'
+    assert_match /Invalid credentials/, last_command_started.output
+    assert_no_stored_credentials
+    assert_equal 1, last_command_started.exit_status
   end
 
   def test_logout_command_clear_credentials
-    do_login 'my user id', 'my access token'
+    do_valid_login
     run_command_and_stop 'qc logout'
     assert_no_stored_credentials
   end

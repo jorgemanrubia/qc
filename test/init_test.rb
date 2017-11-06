@@ -11,7 +11,6 @@ class InitTest < SystemTest
     run_command 'qc init'
     type '1'
     last_command_started.stop
-    puts last_command_started.output
     assert_match(/My first C# project/, last_command_started.output)
     assert_stored_project_settings project_id: '799895'
     assert_equal 0, last_command_started.exit_status

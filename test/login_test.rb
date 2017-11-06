@@ -2,33 +2,33 @@ require "test_helper"
 
 class LoginTest < SystemTest
   def test_ask_for_login_when_not_logged_in
-    run_command_and_stop 'qc', fail_on_error: false
+    run_command 'qc'
     assert_ask_for_login
   end
 
   def test_valid_login_command_stores_credentials
     assert_no_stored_credentials
 
-    do_valid_login
+    do_login TestUser::USER_ID, TestUser::ACCESS_TOKEN
 
-    assert_match(/User id/, last_command_started.output)
-    assert_match(/Access token/, last_command_started.output)
+    assert_match(/User id/, last_command.output)
+    assert_match(/Access token/, last_command.output)
 
     assert_stored_credentials TestUser::USER_ID, TestUser::ACCESS_TOKEN
-    assert_equal 0, last_command_started.exit_status
+    assert_equal 0, last_command.exit_status
   end
 
   def test_invalid_login_command_wont_store_credentials
     assert_no_stored_credentials
     do_login 'some invalid user id', 'some invalid access token'
-    assert_match /Invalid credentials/, last_command_started.output
+    assert_match /Invalid credentials/, last_command.output
     assert_no_stored_credentials
-    assert_equal 1, last_command_started.exit_status
+    assert_equal 1, last_command.exit_status
   end
 
   def test_logout_command_clear_credentials
-    do_valid_login
-    run_command_and_stop 'qc logout'
+    sign_in
+    run_command 'qc logout'
     assert_no_stored_credentials
   end
 

@@ -1,16 +1,16 @@
 module Qc
-  class Runner
+  class Console
     def initialize
     end
 
     def run(argv)
       command = argv[0]
-      client = Qc::Client.new(quant_connect_proxy)
+      client = Qc::CommandRunner.new(quant_connect_proxy)
       success = begin
         if command
-          client.execute(command.to_sym)
+          client.run(command.to_sym)
         else
-          client.execute_default
+          client.run_default
         end
       rescue StandardError => error
         puts "Error: #{error}"
@@ -18,7 +18,7 @@ module Qc
         false
       end
 
-      exit success ? 0 : 1
+      success
     end
 
     private

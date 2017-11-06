@@ -2,39 +2,28 @@ require "test_helper"
 
 class InitTest < SystemTest
   def test_ask_for_login_when_not_logged_in
-    run_command_and_stop 'qc init', fail_on_error: false
+    run_command 'qc init'
     assert_ask_for_login
   end
 
   def test_init_ask_for_project_and_store_it_in_settings_with_default_extension
-    do_valid_login
-    run_command 'qc init'
-    type '1'
-    type ''
-    last_command_started.stop
-    assert_match(/My first C# project/, last_command_started.output)
+    sign_in
+
+    type_when_prompted '1', '' do
+      run_command 'qc init'
+    end
+
+    assert_match(/My first C# project/, last_command.output)
     assert_stored_project_settings project_id: '799895', file_extensions: 'cs,py'
-    assert_equal 0, last_command_started.exit_status
+    assert_equal 0, last_command.exit_status
   end
 
   def test_init_store_settings_with_custom_extension
-    do_valid_login
-    run_command 'qc init'
-    type '1'
-    type 'java,rb'
-    last_command_started.stop
+    sign_in
+    type_when_prompted '1', 'java,rb' do
+      run_command 'qc init'
+    end
     assert_stored_project_settings file_extensions: 'java,rb'
   end
 
-  private
-
-  def assert_stored_project_settings(project_id: nil, file_extensions: nil)
-    credentials = YAML.load_file project_settings_file
-    assert_equal project_id, credentials['project_id'] if project_id
-    assert_equal file_extensions, credentials['file_extensions'] if file_extensions
-  end
-
-  def project_settings_file
-    expand_path File.join('.', '.qc', 'settings.yml')
-  end
 end

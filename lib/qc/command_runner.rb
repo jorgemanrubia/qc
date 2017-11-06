@@ -1,5 +1,5 @@
 module Qc
-  class Client
+  class CommandRunner
     DEFAULT_FILE_EXTENSIONS = 'cs,py'
 
     attr_reader :quant_connect_proxy
@@ -14,18 +14,18 @@ module Qc
       quant_connect_proxy&.credentials
     end
 
-    def execute(command)
+    def run(command)
       if command == :login
-        do_execute(command)
+        do_run(command)
       else
         require_login do
-          do_execute(command)
+          do_run(command)
         end
       end
     end
 
-    def execute_default
-      execute(:default)
+    def run_default
+      run(:default)
     end
 
     private
@@ -45,23 +45,23 @@ module Qc
       end
     end
 
-    def do_execute(command)
+    def do_run(command)
       case command
         when :default
           puts "Default command not implemented yet..."
           true
         when :login
-          execute_login
+          run_login
         when :logout
-          execute_logout
+          run_logout
         when :init
-          execute_init
+          run_init
         else
           raise "Unknonw command #{command}"
       end
     end
 
-    def execute_login
+    def run_login
       puts "Please introduce your QuantConnect credentials. You can find them in your preferences in https://www.quantconnect.com/account."
       user_id = ask_for_value 'User id:'
       access_token = ask_for_value 'Access token:'
@@ -77,7 +77,7 @@ module Qc
       end
     end
 
-    def execute_init
+    def run_init
       FileUtils.mkdir_p(Qc::Util.project_dir)
 
       self.project_settings.project_id = ask_for_project.id
@@ -96,7 +96,8 @@ module Qc
 
     def ask_for_value(question)
       puts question
-      STDIN.gets.chomp
+      v = STDIN.gets
+      v.chomp
     end
 
     def ask_for_project
@@ -122,7 +123,7 @@ module Qc
       file_extensions
     end
 
-    def execute_logout
+    def run_logout
       credentials.destroy
       puts "Logged out successfully"
       true

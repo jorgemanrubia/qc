@@ -25,7 +25,10 @@ module Qc
     def perform_request(method, path)
       timestamp = Time.now.utc.to_time.to_i
       password_hash = Digest::SHA256.hexdigest "#{credentials.access_token}:#{timestamp}"
-      response = RestClient::Request.execute method: method, headers: {Timestamp: timestamp}, url: "#{BASE_URL}#{path}", user: credentials.user_id, password: password_hash
+      response = RestClient::Request.execute method: method,
+                                             headers: {Timestamp: timestamp}, url: "#{BASE_URL}#{path}",
+                                             user: credentials.user_id,
+                                             password: password_hash
       body = response.body.empty? ? '{"success": false}' : response.body
       OpenStruct.new JSON.parse(body)
     end

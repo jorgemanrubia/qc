@@ -80,11 +80,8 @@ module Qc
     def execute_init
       FileUtils.mkdir_p(Qc::Util.project_dir)
 
-      project = ask_for_project
-      file_extensions = ask_for_extensions
-
-      self.project_settings.project_id = project.id
-      self.project_settings.file_extensions = file_extensions
+      self.project_settings.project_id = ask_for_project.id
+      self.project_settings.file_extensions = ask_for_extensions
 
       save_project_settings
     end

@@ -1,5 +1,7 @@
 module Qc
   class Client
+    DEFAULT_FILE_EXTENSIONS = 'cs,py'
+
     attr_reader :quant_connect_proxy
     attr_accessor :project_settings
 
@@ -76,9 +78,14 @@ module Qc
     end
 
     def execute_init
-      project = ask_for_project
       FileUtils.mkdir_p(Qc::Util.project_dir)
+
+      project = ask_for_project
+      file_extensions = ask_for_extensions
+
       self.project_settings.project_id = project.id
+      self.project_settings.file_extensions = file_extensions
+
       save_project_settings
     end
 
@@ -98,7 +105,7 @@ module Qc
     def ask_for_project
       puts "Fetching projets from Quantconnect..."
       projects = quant_connect_proxy.list_projects
-      puts "Please select the project you want to associate with this directory"
+      puts "Select the project you want to associate with this directory"
       projects.each.with_index do |project, index|
         puts "[#{index+1}] - #{project.name}"
       end
@@ -110,6 +117,12 @@ module Qc
         puts "Invalid value (please type a number between #{1} and #{projects.length})"
         ask_for_project
       end
+    end
+
+    def ask_for_extensions
+      file_extensions = ask_for_value "Introduce the file extensions you want to send to QuantConnect as a comma separated list. ENTER to default '#{DEFAULT_FILE_EXTENSIONS}'"
+      file_extensions = DEFAULT_FILE_EXTENSIONS if file_extensions.empty?
+      file_extensions
     end
 
     def execute_logout

@@ -3,7 +3,7 @@ require "test_helper"
 class LoginTest < SystemTest
   def test_ask_for_login_when_not_logged_in
     run_command_and_stop 'qc', fail_on_error: false
-    assert_match(/Please do login by executing 'qc login' first/, last_command_started.output)
+    assert_ask_for_login
   end
 
   def test_valid_login_command_stores_credentials

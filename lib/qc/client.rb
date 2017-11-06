@@ -1,9 +1,11 @@
 module Qc
   class Client
     attr_reader :quant_connect_proxy
+    attr_accessor :project_settings
 
     def initialize(quant_connect_proxy)
       @quant_connect_proxy = quant_connect_proxy
+      @project_settings = Qc::ProjectSettings.new
     end
 
     def credentials
@@ -25,6 +27,7 @@ module Qc
     end
 
     private
+
 
     def logged_in?
       puts "VALUE: #{!!credentials}"
@@ -49,6 +52,8 @@ module Qc
           execute_login
         when :logout
           execute_logout
+        when :init
+          execute_init
         else
           raise "Unknonw command #{command}"
       end
@@ -70,9 +75,41 @@ module Qc
       end
     end
 
+    def execute_init
+      project = ask_for_project
+      FileUtils.mkdir_p(Qc::Util.project_dir)
+      self.project_settings.project_id = project.id
+      save_project_settings
+    end
+
+    def save_project_settings
+      File.open(project_settings_file, 'w') {|file| file.write self.project_settings.to_yaml }
+    end
+
+    def project_settings_file
+      File.join(Qc::Util.project_dir, 'settings.yml')
+    end
+
     def ask_for_value(question)
       puts question
       STDIN.gets.chomp
+    end
+
+    def ask_for_project
+      puts "Fetching projets from Quantconnect..."
+      projects = quant_connect_proxy.list_projects
+      puts "Please select the project you want to associate with this directory"
+      projects.each.with_index do |project, index|
+        puts "[#{index+1}] - #{project.name}"
+      end
+      index = ask_for_value "Project number?"
+      index = index.to_i
+      if index >=1 && index < projects.length + 1
+        projects[index-1]
+      else
+        puts "Invalid value (please type a number between #{1} and #{projects.length})"
+        ask_for_project
+      end
     end
 
     def execute_logout

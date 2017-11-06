@@ -8,7 +8,7 @@ module Qc
     end
 
     def save_to_home
-      FileUtils.mkdir_p(self.class.credentials_directory)
+      FileUtils.mkdir_p(Qc::Util.home_dir)
       File.open(self.class.credentials_file, 'w') do |file|
         file.write self.to_yaml
       end
@@ -19,12 +19,7 @@ module Qc
     end
 
     def self.credentials_file
-      File.join(self.credentials_directory, FILE_NAME)
-    end
-
-    def self.credentials_directory
-      # Not using `Dir.home` because aruba won't let you mock it
-      File.join(ENV['HOME'], '.qc')
+      File.join(Qc::Util.home_dir, FILE_NAME)
     end
   end
 end

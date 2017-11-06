@@ -13,6 +13,13 @@ module Qc
       response.success
     end
 
+    def list_projects
+      result = perform_request :get, '/projects/read'
+      result.projects.collect do |project_json|
+        Qc::Project.new(project_json['projectId'], project_json['name'])
+      end
+    end
+
     private
 
     def perform_request(method, path)

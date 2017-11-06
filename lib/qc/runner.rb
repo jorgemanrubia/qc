@@ -14,6 +14,7 @@ module Qc
         end
       rescue StandardError => error
         puts "Error: #{error}"
+        ap error.backtrace
         false
       end
 

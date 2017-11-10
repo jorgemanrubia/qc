@@ -2,16 +2,14 @@ module Qc
   class CommandRunner
     DEFAULT_FILE_EXTENSIONS = 'cs,py'
 
+    SUPPORTED_COMMANDS =%i(login logout init push)
+
     attr_reader :quant_connect_proxy
     attr_accessor :project_settings
 
     def initialize(quant_connect_proxy)
       @quant_connect_proxy = quant_connect_proxy
-      @project_settings = Qc::ProjectSettings.new
-    end
-
-    def credentials
-      quant_connect_proxy&.credentials
+      @project_settings = read_project_settings
     end
 
     def run(command)
@@ -30,6 +28,17 @@ module Qc
 
     private
 
+    def credentials
+      quant_connect_proxy&.credentials
+    end
+
+    def read_project_settings
+      if ::File.exist?(project_settings_file)
+        YAML.load(::File.open(project_settings_file))
+      else
+        Qc::ProjectSettings.new
+      end
+    end
 
     def logged_in?
       puts "VALUE: #{!!credentials}"
@@ -40,7 +49,7 @@ module Qc
       if credentials
         yield
       else
-        puts "Please do login by executing 'qc login' first"
+        puts "Please sign in by executing 'qc login' first"
         false
       end
     end
@@ -50,19 +59,15 @@ module Qc
         when :default
           puts "Default command not implemented yet..."
           true
-        when :login
-          run_login
-        when :logout
-          run_logout
-        when :init
-          run_init
+        when *SUPPORTED_COMMANDS
+          send "run_#{command}"
         else
-          raise "Unknonw command #{command}"
+          raise "Unknonw command '#{command}'. Supported commands: #{SUPPORTED_COMMANDS.collect(&:to_s).join(', ')}"
       end
     end
 
     def run_login
-      puts "Please introduce your QuantConnect credentials. You can find them in your preferences in https://www.quantconnect.com/account."
+      puts "Please introduce your QuantConnect API credentials. You can find them in your preferences in https://www.quantconnect.com/account."
       user_id = ask_for_value 'User id:'
       access_token = ask_for_value 'Access token:'
 
@@ -79,19 +84,18 @@ module Qc
 
     def run_init
       FileUtils.mkdir_p(Qc::Util.project_dir)
-
-      self.project_settings.project_id = ask_for_project.id
+      project = ask_for_project
+      self.project_settings.project_id = project.id
       self.project_settings.file_extensions = ask_for_extensions
-
       save_project_settings
     end
 
     def save_project_settings
-      File.open(project_settings_file, 'w') {|file| file.write self.project_settings.to_yaml }
+      ::File.open(project_settings_file, 'w') {|file| file.write self.project_settings.to_yaml}
     end
 
     def project_settings_file
-      File.join(Qc::Util.project_dir, 'settings.yml')
+      ::File.join(Qc::Util.project_dir, 'settings.yml')
     end
 
     def ask_for_value(question)
@@ -127,6 +131,14 @@ module Qc
       credentials.destroy
       puts "Logged out successfully"
       true
+    end
+
+    def run_push
+      Dir["*.{#{project_settings.file_extensions}}"].each do |file|
+        puts "uploading #{file}..."
+        content = ::File.read file
+        quant_connect_proxy.put_file project_settings.project_id, file, content
+      end
     end
   end
 end

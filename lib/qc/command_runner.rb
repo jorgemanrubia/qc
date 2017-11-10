@@ -74,7 +74,7 @@ module Qc
       quant_connect_proxy.credentials = Qc::Credentials.new(user_id, access_token)
 
       if quant_connect_proxy.valid_login?
-        Qc::Credentials.new(user_id, access_token).save_to_home
+        credentials.save_to_home
         true
       else
         puts "Invalid credentials"

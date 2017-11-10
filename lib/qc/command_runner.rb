@@ -32,6 +32,10 @@ module Qc
       quant_connect_proxy&.credentials
     end
 
+    def credentials=(new_credentials)
+      quant_connect_proxy.credentials = new_credentials
+    end
+
     def read_project_settings
       if ::File.exist?(project_settings_file)
         YAML.load(::File.open(project_settings_file))
@@ -71,15 +75,19 @@ module Qc
       user_id = ask_for_value 'User id:'
       access_token = ask_for_value 'Access token:'
 
-      quant_connect_proxy.credentials = Qc::Credentials.new(user_id, access_token)
+      self.credentials = Qc::Credentials.new(user_id, access_token)
 
-      if quant_connect_proxy.valid_login?
+      if valid_login?
         credentials.save_to_home
         true
       else
         puts "Invalid credentials"
         false
       end
+    end
+
+    def valid_login?
+      quant_connect_proxy.valid_login?
     end
 
     def run_init

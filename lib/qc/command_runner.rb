@@ -134,11 +134,31 @@ module Qc
     end
 
     def run_push
-      Dir["*.{#{project_settings.file_extensions}}"].each do |file|
+      sync_changed_files
+      save_current_timestamp
+    end
+
+    def sync_changed_files
+      changed_files.each do |file|
         puts "uploading #{file}..."
         content = ::File.read file
         quant_connect_proxy.put_file project_settings.project_id, file, content
       end
+    end
+
+    def changed_files
+      all_files = Dir["*.{#{project_settings.file_extensions}}"]
+
+      return all_files unless project_settings.last_sync_at
+
+      all_files.find_all do |file|
+        ::File.mtime(file) > project_settings.last_sync_at
+      end
+    end
+
+    def save_current_timestamp
+      project_settings.last_sync_at = Time.now
+      save_project_settings
     end
   end
 end

@@ -38,11 +38,14 @@ module Qc
     end
 
     def put_file(project_id, file_name, file_content)
-      response = perform_request :post, '/files/create', payload: {projectId: project_id, name: file_name, content: file_content}
+      payload = {projectId: project_id, name: file_name, content: file_content}
+      response = perform_request :post, '/files/update', payload: payload
+      if missing_file_error?(response)
+        response = perform_request :post, '/files/create', payload: payload
+      end
       validate_response! response
       create_file_from_json_response(response.files[0])
     end
-
 
     def read_file(project_id, file_name)
       response = perform_request :post, '/files/read', payload: {projectId: project_id, name: file_name}
@@ -51,6 +54,10 @@ module Qc
     end
 
     private
+
+    def missing_file_error?(response)
+      !response.success && (response.errors.join("\n") =~ /file not found/i)
+    end
 
     def create_file_from_json_response(file_json)
       Qc::File.new(file_json['name'], file_json['content'])

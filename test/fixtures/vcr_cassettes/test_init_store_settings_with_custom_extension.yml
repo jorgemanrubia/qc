@@ -14,7 +14,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
       Timestamp:
-      - '1510304424'
+      - '1510306199'
       Content-Length:
       - '0'
       Content-Type:
@@ -22,7 +22,7 @@ http_interactions:
       Host:
       - www.quantconnect.com
       Authorization:
-      - Basic NDE2ODc6ZjY5ZDAzMWE0ZjAyZDliZGZhZjZmZGU3ZTA0YzkyMmEzZTQzYTM0MDE2MjQzM2JkOWVlOTZmYzc1NDkzNjRjMg==
+      - Basic NDE2ODc6Yzc2YWE4NGFlZWFhM2I5Y2ExOTE3ZDdhOWM2ZTM3YjE0NTJmNjQyYTQxZDllY2IyYzQ4NzYyNGM2NjBiMzU1OQ==
   response:
     status:
       code: 200
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 10 Nov 2017 09:00:25 GMT
+      - Fri, 10 Nov 2017 09:30:00 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -41,9 +41,9 @@ http_interactions:
       X-Powered-By:
       - PHP/7.0.18-0ubuntu0.16.04.1
       Set-Cookie:
-      - PHPSESSID=ls088bhb31o8jg85046f6naq20; expires=Fri, 10-Nov-2017 14:00:25 GMT;
+      - PHPSESSID=4ah9k1u1dcss2n8tfav735d3e7; expires=Fri, 10-Nov-2017 14:30:00 GMT;
         Max-Age=18000; path=/
-      - QC_Origin=quantconnect; expires=Sun, 12-Nov-2017 09:00:25 GMT; Max-Age=172800;
+      - QC_Origin=quantconnect; expires=Sun, 12-Nov-2017 09:30:00 GMT; Max-Age=172800;
         path=/; domain=.quantconnect.com
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -61,7 +61,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"success":true}'
     http_version: 
-  recorded_at: Fri, 10 Nov 2017 09:00:25 GMT
+  recorded_at: Fri, 10 Nov 2017 09:30:00 GMT
 - request:
     method: get
     uri: https://www.quantconnect.com/api/v2/projects/read
@@ -76,7 +76,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
       Timestamp:
-      - '1510304425'
+      - '1510306200'
       Content-Length:
       - '0'
       Content-Type:
@@ -84,7 +84,7 @@ http_interactions:
       Host:
       - www.quantconnect.com
       Authorization:
-      - Basic NDE2ODc6NTAyY2ExODdjNDJiMWIxMDQ0MzY0MzhiMjk5MWMzYzNhMzRjMjg4ZjNjZGUyOTViZGMwYTI1YTBhYWRjZWQxYg==
+      - Basic NDE2ODc6OWYwYTNiN2I1NTQ4NTQ2MzhlZTc1Y2QwN2IxYzIyMjdhMjUxZWQzNjc0OWQ4ODIyOGFkNjQ5OGZiNzA1YTRiYg==
   response:
     status:
       code: 200
@@ -93,7 +93,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 10 Nov 2017 09:00:25 GMT
+      - Fri, 10 Nov 2017 09:30:01 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -103,9 +103,9 @@ http_interactions:
       X-Powered-By:
       - PHP/7.0.18-0ubuntu0.16.04.1
       Set-Cookie:
-      - PHPSESSID=fm2e9beig7v24m6mav5pahita0; expires=Fri, 10-Nov-2017 14:00:25 GMT;
+      - PHPSESSID=qq3v7cm1ntq72fgvp7bnh5lbb5; expires=Fri, 10-Nov-2017 14:30:01 GMT;
         Max-Age=18000; path=/
-      - QC_Origin=quantconnect; expires=Sun, 12-Nov-2017 09:00:25 GMT; Max-Age=172800;
+      - QC_Origin=quantconnect; expires=Sun, 12-Nov-2017 09:30:01 GMT; Max-Age=172800;
         path=/; domain=.quantconnect.com
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -121,14 +121,14 @@ http_interactions:
       - max-age=31536000; includeSubDomains
     body:
       encoding: UTF-8
-      string: '{"projects":[{"projectId":"805421","name":"my project","modified":"2017-11-07
-        09:52:36","created":"2017-11-07 09:52:36","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
-        Test User"}],"leanVersionId":"2396","owner":true,"channelId":"P805421-7575272ac4bfaafb128bef9036660206","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]},{"projectId":"799895","name":"My
+      string: '{"projects":[{"projectId":"813005","name":"my project","modified":"2017-11-10
+        09:29:46","created":"2017-11-10 09:29:46","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
+        Test User"}],"leanVersionId":"2396","owner":true,"channelId":"P813005-b704c868953d2a506ae2fbea39f3787d","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]},{"projectId":"799895","name":"My
         first C# project","modified":"2017-11-07 09:42:57","created":"2017-11-04 23:02:19","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
         Test User"}],"leanVersionId":"2396","owner":true,"channelId":"P799895-853c8c787799c4642c9c8b5181581a69","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]}],"versions":[{"id":"2396","sref":"refs\/heads\/master","slean":"f118ac6baa58e71eccd5ebd9e7816c555b4b5e94","sleancloud":"94de5b6e0c8425fef45d5ec4791375e92b23c8d3","sdescription":"Merge
         pull request #1299 from StefanoRaggi\/future-margin-model-fix<br\/>Fix decimal
         precision issue in FutureMarginModel.GetMaintenanceMargin","sname":"master","bpublic":"1","itimestamp":"2017-11-09
         23:59:30"}],"success":true}'
     http_version: 
-  recorded_at: Fri, 10 Nov 2017 09:00:25 GMT
+  recorded_at: Fri, 10 Nov 2017 09:30:01 GMT
 recorded_with: VCR 3.0.3

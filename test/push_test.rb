@@ -23,4 +23,12 @@ class PushTest < SystemTest
     refute_match(/uploading file_1.cs.../, last_command.output)
     refute_match(/uploading file_2.cs.../, last_command.output)
   end
+
+  def test_a_second_push_changing_a_file_should_only_push_that_one
+    run_command 'qc push'
+    touch_file 'file_2.cs'
+    run_command 'qc push'
+    refute_match(/uploading file_1.cs.../, last_command.output)
+    assert_match(/uploading file_2.cs.../, last_command.output)
+  end
 end

@@ -53,6 +53,10 @@ module FilesHelper
     FileUtils.cp source_file, in_project_dir(file)
   end
 
+  def touch_file(file)
+    FileUtils.touch(in_project_dir(file))
+  end
+
   private
 
   def patch_home_dir

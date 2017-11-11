@@ -60,12 +60,28 @@ module Qc
     end
 
     def read_compile(project_id, compile_id)
-      response = perform_request :get, "/compile/read", params: {projectId: project_id, compileId: compile_id}
+      response = perform_request :get, '/compile/read', params: {projectId: project_id, compileId: compile_id}
       validate_response! response
       create_compile_from_json_response(response)
     end
 
+    def create_backtest(project_id, compile_id, backtest_name)
+      response = perform_request :post, '/backtests/create', payload: {projectId: project_id, compileId: compile_id, backtestName: backtest_name}
+      validate_response! response
+      create_backtest_from_json_response(response)
+    end
+
+    def read_backtest(project_id, backtest_id)
+      response = perform_request :get, '/backtests/read', params: {projectId: project_id, compileId: backtest_id}
+      validate_response! response
+      create_backtest_from_json_response(OpenStruct.new({success: response.success}.merge(response.backtests[0])))
+    end
+
     private
+
+    def create_backtest_from_json_response(response)
+      Qc::Backtest.new(response.backtestId, response.name, response.completed, response.progres.to_f, response.result, response.success)
+    end
 
     def create_compile_from_json_response(response)
       Qc::Compile.new(response.compileId, response.state)
@@ -87,6 +103,8 @@ module Qc
                                              url: "#{BASE_URL}#{path}",
                                              headers: headers,
                                              user: credentials.user_id,
+                                             content_type: :json,
+                                             accept: :json,
                                              password: password_hash,
                                              payload: payload
       body = response.body.empty? ? '{"success": false}' : response.body

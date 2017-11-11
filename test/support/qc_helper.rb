@@ -59,4 +59,9 @@ module QcHelper
     init_qc_project 1
     run_command 'qc push'
   end
+
+  def prepare_compiled_qc_project_with_files(files)
+    prepare_qc_project_with_files files
+    run_command 'qc compile'
+  end
 end

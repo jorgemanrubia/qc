@@ -2,8 +2,9 @@ module Qc
   class CommandRunner
     DEFAULT_FILE_EXTENSIONS = 'cs,py'
 
-    SUPPORTED_COMMANDS =%i(login logout init push compile)
+    SUPPORTED_COMMANDS =%i(login logout init push compile backtest)
     COMPILE_POLLING_DELAY_IN_SECONDS = 2
+    BACKTEST_DELAY_IN_SECONDS = 2
 
     attr_reader :quant_connect_proxy
     attr_accessor :project_settings
@@ -124,6 +125,36 @@ module Qc
       save_project_settings
 
       compile.success?
+    end
+
+    def run_backtest
+      unless project_settings.compile_id
+        puts "Project not compiled. Please run 'qc compile'"
+        return false
+      end
+
+      do_run_backtest
+
+      true
+    end
+
+    def do_run_backtest
+      backtest = quant_connect_proxy.create_backtest project_settings.project_id, project_settings.compile_id, "backtest-#{project_settings.compile_id}"
+      puts "Backtest for compile #{project_settings.compile_id} sent to the queue with id #{backtest.id}"
+
+      begin
+        puts "Waiting for backtest to finish (#{backtest.progress_in_percentage}\% completed)..."
+        backtest = quant_connect_proxy.read_backtest project_settings.project_id, backtest.id
+        sleep BACKTEST_DELAY_IN_SECONDS if backtest.completed?
+      end while !backtest.completed?
+
+      puts "RESULT: #{backtest.result}"
+
+      puts "Bactest finished" if backtest.success?
+      puts "Backtest failed" if backtest.error?
+
+      project_settings.backtest_id = backtest.id
+      save_project_settings
     end
 
     def valid_login?

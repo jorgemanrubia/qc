@@ -7,7 +7,7 @@ class CompileTest < SystemTest
     assert_match(/compile success/i, last_command.output)
     assert_equal 0, last_command.exit_status
     compile_id = last_command.output[/([[:alnum:]]+\-[[:alnum:]]+)/,1]
-    assert_stored_project_settings compile_id: compile_id
+    assert_stored_project_settings last_compile_id: compile_id
   end
 
   def test_compile_with_errors

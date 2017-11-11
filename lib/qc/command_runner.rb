@@ -121,14 +121,14 @@ module Qc
       puts "Compile success" if compile.success?
       puts "Compile failed" if compile.error?
 
-      project_settings.compile_id = compile.id
+      project_settings.last_compile_id = compile.id
       save_project_settings
 
       compile.success?
     end
 
     def run_backtest
-      unless project_settings.compile_id
+      unless project_settings.last_compile_id
         puts "Project not compiled. Please run 'qc compile'"
         return false
       end
@@ -139,8 +139,8 @@ module Qc
     end
 
     def do_run_backtest
-      backtest = quant_connect_proxy.create_backtest project_settings.project_id, project_settings.compile_id, "backtest-#{project_settings.compile_id}"
-      puts "Backtest for compile #{project_settings.compile_id} sent to the queue with id #{backtest.id}"
+      backtest = quant_connect_proxy.create_backtest project_settings.project_id, project_settings.last_compile_id, "backtest-#{project_settings.last_compile_id}"
+      puts "Backtest for compile #{project_settings.last_compile_id} sent to the queue with id #{backtest.id}"
 
       begin
         puts "Waiting for backtest to finish (#{backtest.progress_in_percentage}\% completed)..."
@@ -153,7 +153,7 @@ module Qc
       puts "Bactest finished" if backtest.success?
       puts "Backtest failed" if backtest.error?
 
-      project_settings.backtest_id = backtest.id
+      project_settings.last_backtest_id = backtest.id
       save_project_settings
     end
 

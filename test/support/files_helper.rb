@@ -32,10 +32,10 @@ module FilesHelper
     in_project_dir '.qc/settings.yml'
   end
 
-  def assert_stored_project_settings(project_id: nil, file_extensions: nil, compile_id: nil)
+  def assert_stored_project_settings(project_id: nil, file_extensions: nil, last_compile_id: nil)
     assert_equal project_id, project_settings.project_id if project_id
     assert_equal file_extensions, project_settings.file_extensions if file_extensions
-    assert_equal compile_id, project_settings.compile_id if compile_id
+    assert_equal last_compile_id, project_settings.last_compile_id if last_compile_id
   end
 
   def project_settings

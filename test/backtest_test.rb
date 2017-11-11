@@ -13,6 +13,7 @@ class CompileTest < SystemTest
     run_command 'qc backtest'
     assert_match(/Waiting for backtest to finish/i, last_command.output)
     assert_match(/Bactest finished/i, last_command.output)
+    assert_equal 0, last_command.exit_status
   end
 
 end

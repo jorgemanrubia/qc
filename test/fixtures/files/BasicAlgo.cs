@@ -13,7 +13,7 @@ namespace QuantConnect
         {
         	// backtest parameters
             SetStartDate(2016, 1, 1);
-            SetEndDate(DateTime.Now);
+            SetStartDate(2016, 1, 3);
 
             // cash allocation
             SetCash(25000);

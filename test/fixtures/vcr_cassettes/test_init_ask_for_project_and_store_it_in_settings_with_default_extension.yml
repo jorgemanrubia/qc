@@ -14,7 +14,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
       Timestamp:
-      - '1510306201'
+      - '1510437794'
       Content-Length:
       - '0'
       Content-Type:
@@ -22,7 +22,7 @@ http_interactions:
       Host:
       - www.quantconnect.com
       Authorization:
-      - Basic NDE2ODc6NWZhYWViOTQzY2IwMmJmOWU5MzM1ZjU3MWZiNGVmMzc5NGFiMDczOThmMjFmY2IwZDRhN2I2ZDQwODYxNGQwNg==
+      - Basic NDE2ODc6NWJhNmFkZGI3YWFlYjczNDAxYTVlM2ZlNDliNjhkYTQ3YjkwOTc0MmEyZTAwNWQxYjA0ZDdmYjhmY2UxZThkMQ==
   response:
     status:
       code: 200
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 10 Nov 2017 09:30:01 GMT
+      - Sat, 11 Nov 2017 22:03:15 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -41,9 +41,9 @@ http_interactions:
       X-Powered-By:
       - PHP/7.0.18-0ubuntu0.16.04.1
       Set-Cookie:
-      - PHPSESSID=818oh0ukttn8vre4rhld3rsvh2; expires=Fri, 10-Nov-2017 14:30:01 GMT;
+      - PHPSESSID=n4a79ifit42i8sotlehoctq2q6; expires=Sun, 12-Nov-2017 03:03:14 GMT;
         Max-Age=18000; path=/
-      - QC_Origin=quantconnect; expires=Sun, 12-Nov-2017 09:30:01 GMT; Max-Age=172800;
+      - QC_Origin=quantconnect; expires=Mon, 13-Nov-2017 22:03:15 GMT; Max-Age=172800;
         path=/; domain=.quantconnect.com
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -61,7 +61,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"success":true}'
     http_version: 
-  recorded_at: Fri, 10 Nov 2017 09:30:01 GMT
+  recorded_at: Sat, 11 Nov 2017 22:03:16 GMT
 - request:
     method: get
     uri: https://www.quantconnect.com/api/v2/projects/read
@@ -76,7 +76,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
       Timestamp:
-      - '1510306201'
+      - '1510437796'
       Content-Length:
       - '0'
       Content-Type:
@@ -84,7 +84,7 @@ http_interactions:
       Host:
       - www.quantconnect.com
       Authorization:
-      - Basic NDE2ODc6NWZhYWViOTQzY2IwMmJmOWU5MzM1ZjU3MWZiNGVmMzc5NGFiMDczOThmMjFmY2IwZDRhN2I2ZDQwODYxNGQwNg==
+      - Basic NDE2ODc6NGFjMjVlZWFkZWJmODQ3YjI0YTk5NGViM2U4NDcyOWVkYzZiYjIxNTZlY2Q1MDE3YmY5MzE0MmIxYTcyY2YwMA==
   response:
     status:
       code: 200
@@ -93,19 +93,19 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 10 Nov 2017 09:30:02 GMT
+      - Sat, 11 Nov 2017 22:03:16 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1951'
+      - '1899'
       Connection:
       - keep-alive
       X-Powered-By:
       - PHP/7.0.18-0ubuntu0.16.04.1
       Set-Cookie:
-      - PHPSESSID=enamce51upqvkuboug83nfkbe0; expires=Fri, 10-Nov-2017 14:30:02 GMT;
+      - PHPSESSID=no9ues93h6aro802mjvts0r0g3; expires=Sun, 12-Nov-2017 03:03:16 GMT;
         Max-Age=18000; path=/
-      - QC_Origin=quantconnect; expires=Sun, 12-Nov-2017 09:30:02 GMT; Max-Age=172800;
+      - QC_Origin=quantconnect; expires=Mon, 13-Nov-2017 22:03:16 GMT; Max-Age=172800;
         path=/; domain=.quantconnect.com
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -121,14 +121,13 @@ http_interactions:
       - max-age=31536000; includeSubDomains
     body:
       encoding: UTF-8
-      string: '{"projects":[{"projectId":"813005","name":"my project","modified":"2017-11-10
-        09:29:46","created":"2017-11-10 09:29:46","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
-        Test User"}],"leanVersionId":"2396","owner":true,"channelId":"P813005-b704c868953d2a506ae2fbea39f3787d","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]},{"projectId":"799895","name":"My
-        first C# project","modified":"2017-11-07 09:42:57","created":"2017-11-04 23:02:19","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
-        Test User"}],"leanVersionId":"2396","owner":true,"channelId":"P799895-853c8c787799c4642c9c8b5181581a69","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]}],"versions":[{"id":"2396","sref":"refs\/heads\/master","slean":"f118ac6baa58e71eccd5ebd9e7816c555b4b5e94","sleancloud":"94de5b6e0c8425fef45d5ec4791375e92b23c8d3","sdescription":"Merge
-        pull request #1299 from StefanoRaggi\/future-margin-model-fix<br\/>Fix decimal
-        precision issue in FutureMarginModel.GetMaintenanceMargin","sname":"master","bpublic":"1","itimestamp":"2017-11-09
-        23:59:30"}],"success":true}'
+      string: '{"projects":[{"projectId":"816039","name":"my project","modified":"2017-11-11
+        22:03:04","created":"2017-11-11 22:03:04","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
+        Test User"}],"leanVersionId":"2402","owner":true,"channelId":"P816039-3c5abaa9e72efd6154baf3f87975078e","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]},{"projectId":"799895","name":"My
+        first C# project","modified":"2017-11-10 13:51:31","created":"2017-11-04 23:02:19","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
+        Test User"}],"leanVersionId":"2402","owner":true,"channelId":"P799895-853c8c787799c4642c9c8b5181581a69","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]}],"versions":[{"id":"2402","sref":"refs\/heads\/master","slean":"5f238a5727c77f7b75fb24370c07f99fbcf521fe","sleancloud":"fe358c1589e9ea11d5f9828f7e67120c987111ae","sdescription":"Merge
+        pull request #1298 from andrewhart098\/aggregating-consolidators<br\/>TickAggregator","sname":"master","bpublic":"1","itimestamp":"2017-11-10
+        22:31:04"}],"success":true}'
     http_version: 
-  recorded_at: Fri, 10 Nov 2017 09:30:02 GMT
+  recorded_at: Sat, 11 Nov 2017 22:03:16 GMT
 recorded_with: VCR 3.0.3

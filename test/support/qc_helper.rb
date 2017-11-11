@@ -51,4 +51,12 @@ module QcHelper
     assert_equal file_name, file.name
     assert_equal source_file_content.strip, file.content.strip
   end
+
+  def prepare_qc_project_with_files(files)
+    prepare_local_files files
+    create_empty_quant_connect_project 'my project'
+    sign_in
+    init_qc_project 1
+    run_command 'qc push'
+  end
 end

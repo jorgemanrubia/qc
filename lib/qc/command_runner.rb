@@ -2,7 +2,8 @@ module Qc
   class CommandRunner
     DEFAULT_FILE_EXTENSIONS = 'cs,py'
 
-    SUPPORTED_COMMANDS =%i(login logout init push)
+    SUPPORTED_COMMANDS =%i(login logout init push compile)
+    COMPILE_POLLING_DELAY_IN_SECONDS = 2
 
     attr_reader :quant_connect_proxy
     attr_accessor :project_settings
@@ -45,7 +46,6 @@ module Qc
     end
 
     def logged_in?
-      puts "VALUE: #{!!credentials}"
       !!credentials
     end
 
@@ -86,16 +86,48 @@ module Qc
       end
     end
 
-    def valid_login?
-      quant_connect_proxy.valid_login?
-    end
-
     def run_init
       FileUtils.mkdir_p(Qc::Util.project_dir)
       project = ask_for_project
       self.project_settings.project_id = project.id
       self.project_settings.file_extensions = ask_for_extensions
       save_project_settings
+      true
+    end
+
+    def run_logout
+      credentials.destroy
+      puts "Logged out successfully"
+      true
+    end
+
+    def run_push
+      sync_changed_files
+      save_current_timestamp
+      true
+    end
+
+    def run_compile
+      compile = quant_connect_proxy.create_compile project_settings.project_id
+      puts "Compile request sent to the queue with id #{compile.id}"
+
+      begin
+        puts "Waiting for compilation result..."
+        compile = quant_connect_proxy.read_compile project_settings.project_id, compile.id
+        sleep COMPILE_POLLING_DELAY_IN_SECONDS if compile.in_queue?
+      end while compile.in_queue?
+
+      puts "Compile success" if compile.success?
+      puts "Compile failed" if compile.error?
+
+      project_settings.compile_id = compile.id
+      save_project_settings
+
+      compile.success?
+    end
+
+    def valid_login?
+      quant_connect_proxy.valid_login?
     end
 
     def save_project_settings
@@ -135,16 +167,6 @@ module Qc
       file_extensions
     end
 
-    def run_logout
-      credentials.destroy
-      puts "Logged out successfully"
-      true
-    end
-
-    def run_push
-      sync_changed_files
-      save_current_timestamp
-    end
 
     def sync_changed_files
       changed_files.each do |file|

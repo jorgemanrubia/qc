@@ -53,7 +53,23 @@ module Qc
       create_file_from_json_response(response.files[0])
     end
 
+    def create_compile(project_id)
+      response = perform_request :post, '/compile/create', payload: {projectId: project_id}
+      validate_response! response
+      create_compile_from_json_response(response)
+    end
+
+    def read_compile(project_id, compile_id)
+      response = perform_request :get, "/compile/read", params: {projectId: project_id, compileId: compile_id}
+      validate_response! response
+      create_compile_from_json_response(response)
+    end
+
     private
+
+    def create_compile_from_json_response(response)
+      Qc::Compile.new(response.compileId, response.state)
+    end
 
     def missing_file_error?(response)
       !response.success && (response.errors.join("\n") =~ /file not found/i)
@@ -63,11 +79,13 @@ module Qc
       Qc::File.new(file_json['name'], file_json['content'])
     end
 
-    def perform_request(method, path, payload: {})
+    def perform_request(method, path, payload: {}, params: {})
       timestamp = Time.now.utc.to_time.to_i
       password_hash = Digest::SHA256.hexdigest "#{credentials.access_token}:#{timestamp}"
+      headers = {Timestamp: timestamp}.merge(params: params)
       response = RestClient::Request.execute method: method,
-                                             headers: {Timestamp: timestamp}, url: "#{BASE_URL}#{path}",
+                                             url: "#{BASE_URL}#{path}",
+                                             headers: headers,
                                              user: credentials.user_id,
                                              password: password_hash,
                                              payload: payload

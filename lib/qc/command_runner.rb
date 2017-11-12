@@ -139,8 +139,6 @@ module Qc
       end
 
       do_run_backtest
-
-      true
     end
 
     def do_run_default
@@ -168,6 +166,8 @@ module Qc
 
       project_settings.last_backtest_id = backtest.id
       save_project_settings
+
+      backtest.success?
     end
 
     def valid_login?

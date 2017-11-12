@@ -19,7 +19,7 @@ class CompileTest < SystemTest
     prepare_compiled_qc_project_with_files 'BasicAlgo.cs'
     run_command 'qc backtest'
     assert_match(/Waiting for backtest to finish/i, last_command.output)
-    assert_match(/Bactest finished/i, last_command.output)
+    assert_match(/Backtest finished/i, last_command.output)
     assert_equal 0, last_command.exit_status
   end
 

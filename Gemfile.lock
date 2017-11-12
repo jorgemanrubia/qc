@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    qc (0.5.4)
+    qc (0.5.5)
       rest-client (~> 2.0.2)
       vcr (~> 3.0.3)
       webmock (~> 3.1.0)

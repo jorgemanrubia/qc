@@ -155,8 +155,6 @@ module Qc
         sleep BACKTEST_DELAY_IN_SECONDS if backtest.completed?
       end while !backtest.completed?
 
-      puts "RESULT: #{backtest.result}"
-
       puts "Bactest finished" if backtest.success?
       puts "Backtest failed" if backtest.error?
 

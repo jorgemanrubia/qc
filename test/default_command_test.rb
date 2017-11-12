@@ -1,6 +1,13 @@
 require "test_helper"
 
 class CompileTest < SystemTest
+  def test_should_fail_when_no_project_initialized
+    sign_in
+    run_command 'qc'
+    assert_match /initialize your project/, last_command.output
+    assert_equal 1, last_command.exit_status
+  end
+
   def test_default_command_test_will_execute_push_compile_and_backtest_in_sequence
     prepare_local_project_linked_with_qc_with_files 'BasicAlgo.cs'
     run_command 'qc'

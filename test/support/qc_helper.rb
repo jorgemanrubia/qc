@@ -52,7 +52,7 @@ module QcHelper
     assert_equal source_file_content.strip, file.content.strip
   end
 
-  def prepare_local_project_linked_with_qc_with_files(files)
+  def prepare_local_project_linked_with_qc_with_files(*files)
     prepare_local_files files
     create_empty_quant_connect_project 'my project'
     sign_in

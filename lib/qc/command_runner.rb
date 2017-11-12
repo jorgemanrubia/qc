@@ -102,12 +102,16 @@ module Qc
     end
 
     def run_push
+      return false unless validate_initialized_project!
+
       sync_changed_files
       save_current_timestamp
       true
     end
 
     def run_compile
+      return false unless validate_initialized_project!
+
       compile = quant_connect_proxy.create_compile project_settings.project_id
       puts "Compile request sent to the queue with id #{compile.id}"
 
@@ -127,6 +131,8 @@ module Qc
     end
 
     def run_backtest
+      return false unless validate_initialized_project!
+
       unless project_settings.last_compile_id
         puts "Project not compiled. Please run 'qc compile'"
         return false
@@ -138,6 +144,8 @@ module Qc
     end
 
     def do_run_default
+      return false unless validate_initialized_project!
+
       failed = %i(push compile backtest).find do |command|
         !run(command)
       end
@@ -225,6 +233,15 @@ module Qc
     def save_current_timestamp
       project_settings.last_sync_at = Time.now
       save_project_settings
+    end
+
+    def validate_initialized_project!
+      puts "Please run 'qc init' to initialize your project" unless initialized_project?
+      initialized_project?
+    end
+
+    def initialized_project?
+      project_settings.project_id
     end
   end
 end

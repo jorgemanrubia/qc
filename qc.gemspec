@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jorge Manrubia"]
   spec.email         = ["jorge.manrubia@gmail.com"]
 
-  spec.summary       = %q{QuantConnect command line utils}
+  spec.summary       = %q{Sync and run your QuantConnect backtests from the command line}
   spec.homepage      = "https://github.com/jorgemanrubia/qc"
   spec.license       = "MIT"
 

@@ -1,28 +1,45 @@
 # Qc
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/qc`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Qc is a commandline tool that lets you sync and run your [QuantConnect](https://www.quantconnect.com) backtests from the command line.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Qc is distributed as a ruby gem. You can install it with:
 
-```ruby
-gem 'qc'
+```
+gem install qc
 ```
 
-And then execute:
+To update it run:
 
-    $ bundle
+```
+gem update qc
+```
 
-Or install it yourself as:
+## Workflow
 
-    $ gem install qc
+1. Run `qc login` for introducing your QuantConnect credentials
+2. Run `qc init` on the directory that contains your QuantConnect algorithm
+3. Execute `qc` to sync and backtest your algorithm in QuantConnect
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+qc [command]
+```
+
+The supported commands are:
+
+| Command| description|
+| -- | -- |
+| `qc login`| It will ask for the api credentials you can find in [your QuantConnect account page](https://www.quantconnect.com/account). They will be stored in `~/.qc`. You only need to login once. |  
+| `qc logout`| Logout from QuantConnect clearing the credentials stored locally.  |
+| `qc init`| Initialize the directory of the algo project you are working on. It will ask for a QuantConnect project to link your algo with. You need to run this once for every project you want to sync with QuantConnect. |
+| `qc push` | Send your local files to QuantConnect. It will only send the files that changed since the last time you run the command |
+| `qc compile` | Compile your project in QuantConnect |
+| `qc backtest` | Run the backtest of your algorithm in QuantConnect |
+
+When no command is provided, it will execute `push`, `compile` and `backtest` in sequence.
 
 ## Development
 

@@ -1,6 +1,6 @@
 # Qc
 
-Qc is a commandline tool that lets you sync and run your [QuantConnect](https://www.quantconnect.com) backtests from the command line.
+Qc is a commandline tool that lets you sync and run your [QuantConnect](https://www.quantconnect.com) backtests.
 
 ## Installation
 

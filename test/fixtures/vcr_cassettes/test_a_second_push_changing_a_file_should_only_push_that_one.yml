@@ -1,0 +1,639 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.quantconnect.com/api/v2/projects/read
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      Timestamp:
+      - '1510484489'
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - www.quantconnect.com
+      Authorization:
+      - Basic NDE2ODc6NmI4OGEwYzBmNjk4N2ZiZmMzMGMzM2U1MTQ0OTI1ZmNiZmVmZTM4Y2IyNDRkMjk2MDM2YmUxZjAzNzBmZGJlNg==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 12 Nov 2017 11:01:29 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1899'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.0.18-0ubuntu0.16.04.1
+      Set-Cookie:
+      - PHPSESSID=l9c2iijcd4vi7815qher79hcv3; expires=Sun, 12-Nov-2017 16:01:29 GMT;
+        Max-Age=18000; path=/
+      - QC_Origin=quantconnect; expires=Tue, 14-Nov-2017 11:01:29 GMT; Max-Age=172800;
+        path=/; domain=.quantconnect.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"projects":[{"projectId":"816913","name":"my project","modified":"2017-11-12
+        11:01:15","created":"2017-11-12 11:01:15","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
+        Test User"}],"leanVersionId":"2402","owner":true,"channelId":"P816913-e47264860f3117172359c2724fff4d0b","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]},{"projectId":"799895","name":"My
+        first C# project","modified":"2017-11-10 13:51:31","created":"2017-11-04 23:02:19","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
+        Test User"}],"leanVersionId":"2402","owner":true,"channelId":"P799895-853c8c787799c4642c9c8b5181581a69","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]}],"versions":[{"id":"2402","sref":"refs\/heads\/master","slean":"5f238a5727c77f7b75fb24370c07f99fbcf521fe","sleancloud":"fe358c1589e9ea11d5f9828f7e67120c987111ae","sdescription":"Merge
+        pull request #1298 from andrewhart098\/aggregating-consolidators<br\/>TickAggregator","sname":"master","bpublic":"1","itimestamp":"2017-11-10
+        22:31:04"}],"success":true}'
+    http_version: 
+  recorded_at: Sun, 12 Nov 2017 11:01:29 GMT
+- request:
+    method: post
+    uri: https://www.quantconnect.com/api/v2/projects/delete
+    body:
+      encoding: UTF-8
+      string: projectId=816913
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      Timestamp:
+      - '1510484489'
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - www.quantconnect.com
+      Authorization:
+      - Basic NDE2ODc6NmI4OGEwYzBmNjk4N2ZiZmMzMGMzM2U1MTQ0OTI1ZmNiZmVmZTM4Y2IyNDRkMjk2MDM2YmUxZjAzNzBmZGJlNg==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 12 Nov 2017 11:01:30 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '16'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.0.18-0ubuntu0.16.04.1
+      Set-Cookie:
+      - PHPSESSID=2srftnatchbv74fptdmv4brc46; expires=Sun, 12-Nov-2017 16:01:30 GMT;
+        Max-Age=18000; path=/
+      - QC_Origin=quantconnect; expires=Tue, 14-Nov-2017 11:01:30 GMT; Max-Age=172800;
+        path=/; domain=.quantconnect.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"success":true}'
+    http_version: 
+  recorded_at: Sun, 12 Nov 2017 11:01:30 GMT
+- request:
+    method: post
+    uri: https://www.quantconnect.com/api/v2/projects/create
+    body:
+      encoding: UTF-8
+      string: name=my+project&language=C%23
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      Timestamp:
+      - '1510484490'
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - www.quantconnect.com
+      Authorization:
+      - Basic NDE2ODc6YzRhNWNjN2U3N2UwYzExMDBhYzgzYTM5NGU2YTA2YjQ5M2U4ZWE2NmUxYjZhMDRhMWQ1NGYyMjg3YjE3NGVlZA==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 12 Nov 2017 11:01:31 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '137'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.0.18-0ubuntu0.16.04.1
+      Set-Cookie:
+      - PHPSESSID=6t2i6glivjumlcafe6vhk05ug2; expires=Sun, 12-Nov-2017 16:01:30 GMT;
+        Max-Age=18000; path=/
+      - QC_Origin=quantconnect; expires=Tue, 14-Nov-2017 11:01:30 GMT; Max-Age=172800;
+        path=/; domain=.quantconnect.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"projects":[{"projectId":"816914","name":"my project","created":"2017-11-12
+        11:01:30","modified":"2017-11-12 11:01:30"}],"success":true}'
+    http_version: 
+  recorded_at: Sun, 12 Nov 2017 11:01:31 GMT
+- request:
+    method: get
+    uri: https://www.quantconnect.com/api/v2/authenticate
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      Timestamp:
+      - '1510484491'
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - www.quantconnect.com
+      Authorization:
+      - Basic NDE2ODc6YjNiNjc2MDZhZTVjODRkOTIzYjIwM2ZiN2U5ODJkZWY0N2NmNzEzMjEwYjY0Y2MxOTIzNzcwMDRjMDM2NTAwMw==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 12 Nov 2017 11:01:32 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '16'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.0.18-0ubuntu0.16.04.1
+      Set-Cookie:
+      - PHPSESSID=nnsudlfao1f8kq1br9narrlm95; expires=Sun, 12-Nov-2017 16:01:32 GMT;
+        Max-Age=18000; path=/
+      - QC_Origin=quantconnect; expires=Tue, 14-Nov-2017 11:01:32 GMT; Max-Age=172800;
+        path=/; domain=.quantconnect.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"success":true}'
+    http_version: 
+  recorded_at: Sun, 12 Nov 2017 11:01:32 GMT
+- request:
+    method: get
+    uri: https://www.quantconnect.com/api/v2/projects/read
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      Timestamp:
+      - '1510484492'
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - www.quantconnect.com
+      Authorization:
+      - Basic NDE2ODc6YzA3Y2JkYThmOWZlNDRhYmZmNWIyMDdmOWRkNzNmNWE4YTMxZDdjMDAxNDc2YmY4OTgwZDUzMDkwNDAyYzU0YQ==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 12 Nov 2017 11:01:33 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1899'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.0.18-0ubuntu0.16.04.1
+      Set-Cookie:
+      - PHPSESSID=5dti6o8jfme71ksl3jaupmghp6; expires=Sun, 12-Nov-2017 16:01:33 GMT;
+        Max-Age=18000; path=/
+      - QC_Origin=quantconnect; expires=Tue, 14-Nov-2017 11:01:33 GMT; Max-Age=172800;
+        path=/; domain=.quantconnect.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"projects":[{"projectId":"816914","name":"my project","modified":"2017-11-12
+        11:01:30","created":"2017-11-12 11:01:30","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
+        Test User"}],"leanVersionId":"2402","owner":true,"channelId":"P816914-fa75917b0e9abcd310fea131b89125ba","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]},{"projectId":"799895","name":"My
+        first C# project","modified":"2017-11-10 13:51:31","created":"2017-11-04 23:02:19","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
+        Test User"}],"leanVersionId":"2402","owner":true,"channelId":"P799895-853c8c787799c4642c9c8b5181581a69","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]}],"versions":[{"id":"2402","sref":"refs\/heads\/master","slean":"5f238a5727c77f7b75fb24370c07f99fbcf521fe","sleancloud":"fe358c1589e9ea11d5f9828f7e67120c987111ae","sdescription":"Merge
+        pull request #1298 from andrewhart098\/aggregating-consolidators<br\/>TickAggregator","sname":"master","bpublic":"1","itimestamp":"2017-11-10
+        22:31:04"}],"success":true}'
+    http_version: 
+  recorded_at: Sun, 12 Nov 2017 11:01:33 GMT
+- request:
+    method: post
+    uri: https://www.quantconnect.com/api/v2/files/update
+    body:
+      encoding: UTF-8
+      string: projectId=816914&name=file_1.cs&content=file+1+contents...%0A
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      Timestamp:
+      - '1510484493'
+      Content-Length:
+      - '61'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - www.quantconnect.com
+      Authorization:
+      - Basic NDE2ODc6N2NlYzQyOTkwNWIxYThlMTIyNDcwOGY2M2I4OTBhNTVhNDlmZGJkZTI1ODg4MGQyNTNjYzI3ZDAzMGEzZjc1Ng==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 12 Nov 2017 11:01:34 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '62'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.0.18-0ubuntu0.16.04.1
+      Set-Cookie:
+      - PHPSESSID=q2f0ofue58jva0onj6mcd16qs3; expires=Sun, 12-Nov-2017 16:01:34 GMT;
+        Max-Age=18000; path=/
+      - QC_Origin=quantconnect; expires=Tue, 14-Nov-2017 11:01:34 GMT; Max-Age=172800;
+        path=/; domain=.quantconnect.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"errors":["File not found ''name''=file_1.cs"],"success":false}'
+    http_version: 
+  recorded_at: Sun, 12 Nov 2017 11:01:34 GMT
+- request:
+    method: post
+    uri: https://www.quantconnect.com/api/v2/files/create
+    body:
+      encoding: UTF-8
+      string: projectId=816914&name=file_1.cs&content=file+1+contents...%0A
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      Timestamp:
+      - '1510484494'
+      Content-Length:
+      - '61'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - www.quantconnect.com
+      Authorization:
+      - Basic NDE2ODc6ZTJmYTYyOTY3MTBmOWIxNWY4MDcwNGNkMDQ5N2E4YzEyZDJlNzc4MzBkMzkzZjhmN2YxYmNhNjI1YmQ4OGQ3YQ==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 12 Nov 2017 11:01:34 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '111'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.0.18-0ubuntu0.16.04.1
+      Set-Cookie:
+      - PHPSESSID=5o4kbdiavj7s144qu9hoif9124; expires=Sun, 12-Nov-2017 16:01:34 GMT;
+        Max-Age=18000; path=/
+      - QC_Origin=quantconnect; expires=Tue, 14-Nov-2017 11:01:34 GMT; Max-Age=172800;
+        path=/; domain=.quantconnect.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"files":[{"name":"file_1.cs","content":"file 1 contents...","modified":"2017-11-12
+        11:01:34"}],"success":true}'
+    http_version: 
+  recorded_at: Sun, 12 Nov 2017 11:01:35 GMT
+- request:
+    method: post
+    uri: https://www.quantconnect.com/api/v2/files/update
+    body:
+      encoding: UTF-8
+      string: projectId=816914&name=file_2.cs&content=file+2+contents...%0A
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      Timestamp:
+      - '1510484495'
+      Content-Length:
+      - '61'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - www.quantconnect.com
+      Authorization:
+      - Basic NDE2ODc6ODZiNDU5ZWI1NDM4OTQzZDYxMGZiNjg3YmM1MWI1YjI0OWEzYjQxNzgzZjA2OGIzODg5M2ZhMzUxZThjNDU4Yg==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 12 Nov 2017 11:01:35 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '62'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.0.18-0ubuntu0.16.04.1
+      Set-Cookie:
+      - PHPSESSID=bhcnnabtf1dod5dgj0gf7kvpi2; expires=Sun, 12-Nov-2017 16:01:35 GMT;
+        Max-Age=18000; path=/
+      - QC_Origin=quantconnect; expires=Tue, 14-Nov-2017 11:01:35 GMT; Max-Age=172800;
+        path=/; domain=.quantconnect.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"errors":["File not found ''name''=file_2.cs"],"success":false}'
+    http_version: 
+  recorded_at: Sun, 12 Nov 2017 11:01:35 GMT
+- request:
+    method: post
+    uri: https://www.quantconnect.com/api/v2/files/create
+    body:
+      encoding: UTF-8
+      string: projectId=816914&name=file_2.cs&content=file+2+contents...%0A
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      Timestamp:
+      - '1510484495'
+      Content-Length:
+      - '61'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - www.quantconnect.com
+      Authorization:
+      - Basic NDE2ODc6ODZiNDU5ZWI1NDM4OTQzZDYxMGZiNjg3YmM1MWI1YjI0OWEzYjQxNzgzZjA2OGIzODg5M2ZhMzUxZThjNDU4Yg==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 12 Nov 2017 11:01:36 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '111'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.0.18-0ubuntu0.16.04.1
+      Set-Cookie:
+      - PHPSESSID=s0s3pf6g8bo7a9vfkg676el970; expires=Sun, 12-Nov-2017 16:01:36 GMT;
+        Max-Age=18000; path=/
+      - QC_Origin=quantconnect; expires=Tue, 14-Nov-2017 11:01:36 GMT; Max-Age=172800;
+        path=/; domain=.quantconnect.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"files":[{"name":"file_2.cs","content":"file 2 contents...","modified":"2017-11-12
+        11:01:36"}],"success":true}'
+    http_version: 
+  recorded_at: Sun, 12 Nov 2017 11:01:36 GMT
+- request:
+    method: post
+    uri: https://www.quantconnect.com/api/v2/files/update
+    body:
+      encoding: UTF-8
+      string: projectId=816914&name=file_2.cs&content=file+2+contents...%0A
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      Timestamp:
+      - '1510484496'
+      Content-Length:
+      - '61'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - www.quantconnect.com
+      Authorization:
+      - Basic NDE2ODc6ODc2MjBiY2Q1YzZmYTVkNzk4MWI5YmM1MDM5ZmIyYzdlNjZmMjczZTEyZmYzMDg2OGNmMGZiNDhmN2FmYTNjZQ==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 12 Nov 2017 11:01:37 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '124'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.0.18-0ubuntu0.16.04.1
+      Set-Cookie:
+      - PHPSESSID=qjg9itknf0lm94vo62sbo5m774; expires=Sun, 12-Nov-2017 16:01:37 GMT;
+        Max-Age=18000; path=/
+      - QC_Origin=quantconnect; expires=Tue, 14-Nov-2017 11:01:37 GMT; Max-Age=172800;
+        path=/; domain=.quantconnect.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"files":[{"name":"file_2.cs","content":"file 2 contents...","modified":"2017-11-12
+        11:01:37","open":false}],"success":true}'
+    http_version: 
+  recorded_at: Sun, 12 Nov 2017 11:01:37 GMT
+recorded_with: VCR 3.0.3

@@ -62,8 +62,7 @@ module Qc
     def do_run(command)
       case command
         when :default
-          puts "Default command not implemented yet..."
-          true
+          do_run_default
         when *SUPPORTED_COMMANDS
           send "run_#{command}"
         else
@@ -136,6 +135,14 @@ module Qc
       do_run_backtest
 
       true
+    end
+
+    def do_run_default
+      failed = %i(push compile backtest).find do |command|
+        !run(command)
+      end
+
+      !failed
     end
 
     def do_run_backtest

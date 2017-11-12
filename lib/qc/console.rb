@@ -36,6 +36,7 @@ module Qc
 
         opts.separator ""
         opts.separator "Supported commands: #{Qc::CommandRunner::SUPPORTED_COMMANDS.join(', ')}"
+        opts.separator "When no command provided it will execute: 'push compile backtest' in sequence"
 
         opts.separator ""
         opts.separator "Common options:"

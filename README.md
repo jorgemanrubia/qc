@@ -1,5 +1,7 @@
 # Qc
 
+[![Build Status](https://travis-ci.org/jorgemanrubia/qc.svg?branch=master)](https://travis-ci.org/jorgemanrubia/qc)
+
 Qc is a commandline tool that lets you sync and run your [QuantConnect](https://www.quantconnect.com) backtests.
 
 ## Installation

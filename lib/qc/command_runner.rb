@@ -102,6 +102,8 @@ module Qc
     end
 
     def run_push
+      show_title('Push files')
+
       return false unless validate_initialized_project!
 
       sync_changed_files
@@ -110,6 +112,7 @@ module Qc
     end
 
     def run_compile
+      show_title('Compile')
       return false unless validate_initialized_project!
 
       compile = quant_connect_proxy.create_compile project_settings.project_id
@@ -131,6 +134,7 @@ module Qc
     end
 
     def run_backtest
+      show_title('Run backtest')
       return false unless validate_initialized_project!
 
       unless project_settings.last_compile_id
@@ -149,6 +153,13 @@ module Qc
       end
 
       !failed
+    end
+
+    def show_title(title)
+      separator = '-' * title.length
+      puts "\n#{separator}"
+      puts title
+      puts "#{separator}\n"
     end
 
     def do_run_backtest
@@ -213,8 +224,12 @@ module Qc
 
 
     def sync_changed_files
+      if changed_files.empty?
+        puts "No changes detected"
+      end
+
       changed_files.each do |file|
-        puts "uploading #{file}..."
+        puts "Uploading #{file}..."
         content = ::File.read file
         quant_connect_proxy.put_file project_settings.project_id, file, content
       end

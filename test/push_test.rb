@@ -20,6 +20,7 @@ class PushTest < SystemTest
   def test_a_second_push_without_changing_any_file_should_not_push_any_file
     run_command 'qc push'
     run_command 'qc push'
+    assert_match(/no changes detected/i, last_command.output)
     refute_match(/uploading file_1.cs.../, last_command.output)
     refute_match(/uploading file_2.cs.../, last_command.output)
   end

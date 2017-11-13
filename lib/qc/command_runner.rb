@@ -4,7 +4,7 @@ module Qc
 
     SUPPORTED_COMMANDS =%i(login logout init push compile backtest)
     COMPILE_POLLING_DELAY_IN_SECONDS = 2
-    BACKTEST_DELAY_IN_SECONDS = 2
+    BACKTEST_DELAY_IN_SECONDS = 3
 
     attr_reader :quant_connect_proxy
     attr_accessor :project_settings
@@ -167,7 +167,11 @@ module Qc
       puts "Backtest for compile #{project_settings.last_compile_id} sent to the queue with id #{backtest.id}"
 
       begin
-        puts "Waiting for backtest to finish (#{backtest.progress_in_percentage}\% completed)..."
+        if backtest.started?
+          puts "Waiting for backtest to finish (#{backtest.progress_in_percentage}\% completed)..."
+        else
+          puts "Waiting for backtest to start..."
+        end
         backtest = quant_connect_proxy.read_backtest project_settings.project_id, backtest.id
         sleep BACKTEST_DELAY_IN_SECONDS if backtest.completed?
       end while !backtest.completed?

@@ -10,5 +10,9 @@ module Qc
     def progress_in_percentage
       progress * 100
     end
+
+    def started?
+      progress > 0
+    end
   end
 end

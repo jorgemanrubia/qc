@@ -11,7 +11,7 @@ class CompileTest < SystemTest
   def test_default_command_test_will_execute_push_compile_and_backtest_in_sequence
     prepare_local_project_linked_with_qc_with_files 'BasicAlgo.cs'
     run_command 'qc'
-    assert_match(/Waiting for backtest to finish/i, last_command.output)
+    assert_match(/Waiting for backtest to start/i, last_command.output)
     assert_match(/Backtest finished/i, last_command.output)
     assert_equal 0, last_command.exit_status
   end

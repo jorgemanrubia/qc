@@ -12,8 +12,8 @@ class PushTest < SystemTest
 
   def test_initial_push_should_push_all_the_files
     run_command 'qc push'
-    assert_match(/uploading file_1.cs.../, last_command.output)
-    assert_match(/uploading file_2.cs.../, last_command.output)
+    assert_match(/Uploading file_1.cs.../, last_command.output)
+    assert_match(/Uploading file_2.cs.../, last_command.output)
     assert_files_were_uploaded 'file_1.cs', 'file_2.cs'
   end
 
@@ -21,8 +21,8 @@ class PushTest < SystemTest
     run_command 'qc push'
     run_command 'qc push'
     assert_match(/no changes detected/i, last_command.output)
-    refute_match(/uploading file_1.cs.../, last_command.output)
-    refute_match(/uploading file_2.cs.../, last_command.output)
+    refute_match(/Uploading file_1.cs.../, last_command.output)
+    refute_match(/Uploading file_2.cs.../, last_command.output)
   end
 
   def test_a_second_push_changing_a_file_should_only_push_that_one
@@ -30,7 +30,7 @@ class PushTest < SystemTest
     sleep 0.5
     touch_file 'file_2.cs'
     run_command 'qc push'
-    refute_match(/uploading file_1.cs.../, last_command.output)
-    assert_match(/uploading file_2.cs.../, last_command.output)
+    refute_match(/Uploading file_1.cs.../, last_command.output)
+    assert_match(/Uploading file_2.cs.../, last_command.output)
   end
 end

@@ -18,7 +18,7 @@ class CompileTest < SystemTest
   def test_backtest_works
     prepare_compiled_qc_project_with_files 'BasicAlgo.cs'
     run_command 'qc backtest'
-    assert_match(/Waiting for backtest to finish/i, last_command.output)
+    assert_match(/Waiting for backtest to start/i, last_command.output)
     assert_match(/Backtest finished/i, last_command.output)
     assert_equal 0, last_command.exit_status
   end

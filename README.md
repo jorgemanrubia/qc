@@ -45,11 +45,11 @@ The supported commands are:
 | `qc push` | Send your local files to QuantConnect. It will only send the files that changed since the last time you run the command |
 | `qc compile` | Compile your project in QuantConnect |
 | `qc backtest` | Run the backtest of your algorithm in QuantConnect |
-| `qc backtest` | Open the results in QuantConnect (only MacOS)|
+| `qc backtest` | Open the latest results in QuantConnect (only MacOS)|
 
 ### Opening the results in QuantConnect (only MacOS)
 
-If you pass `--open` after running a backtest it will open the results in QuantConnect:
+If you pass `--open` after running a backtest it will open the results in QuantConnect while the backtest is running:
 
 ```shell
 qc --open

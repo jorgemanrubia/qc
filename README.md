@@ -26,7 +26,7 @@ When no command is provided, it will push your changes to QuantConnect, compile 
 
 ```shell
 qc
-qc --open # To open the results in QuantConnect
+qc --open # To open the results in QuantConnect while running the backtest
 ```
 
 This is equivalent to executing `qc push`, `qc compile` and `qc backtest` in sequence.

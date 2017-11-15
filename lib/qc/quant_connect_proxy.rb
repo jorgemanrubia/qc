@@ -74,13 +74,14 @@ module Qc
     def read_backtest(project_id, backtest_id)
       response = perform_request :get, '/backtests/read', params: {projectId: project_id, compileId: backtest_id}
       validate_response! response
-      create_backtest_from_json_response(OpenStruct.new({success: response.success}.merge(response.backtests[0])))
+      found_backtest_json = response.backtests.find{|backtest_json| backtest_json['backtestId'] == backtest_id}
+      create_backtest_from_json_response(OpenStruct.new({success: response.success}.merge(found_backtest_json)))
     end
 
     private
 
     def create_backtest_from_json_response(response)
-      Qc::Backtest.new(response.backtestId, response.name, response.completed, response.progres.to_f, response.result, response.success)
+      Qc::Backtest.new(response.backtestId, response.name, response.completed, response.progress.to_f, response.result, response.success)
     end
 
     def create_compile_from_json_response(response)

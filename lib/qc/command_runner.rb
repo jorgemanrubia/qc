@@ -2,16 +2,17 @@ module Qc
   class CommandRunner
     DEFAULT_FILE_EXTENSIONS = 'cs,py'
 
-    SUPPORTED_COMMANDS =%i(login logout init push compile backtest)
+    SUPPORTED_COMMANDS =%i(login logout init push compile backtest open)
     COMPILE_POLLING_DELAY_IN_SECONDS = 2
     BACKTEST_DELAY_IN_SECONDS = 3
 
-    attr_reader :quant_connect_proxy
+    attr_reader :quant_connect_proxy, :options
     attr_accessor :project_settings
 
-    def initialize(quant_connect_proxy)
+    def initialize(quant_connect_proxy, options = OpenStruct.new)
       @quant_connect_proxy = quant_connect_proxy
       @project_settings = read_project_settings
+      @options = options
     end
 
     def run(command)
@@ -102,7 +103,7 @@ module Qc
     end
 
     def run_push
-      show_title('Push files')
+      show_title 'Push files'
 
       return false unless validate_initialized_project!
 
@@ -112,7 +113,7 @@ module Qc
     end
 
     def run_compile
-      show_title('Compile')
+      show_title 'Compile'
       return false unless validate_initialized_project!
 
       compile = quant_connect_proxy.create_compile project_settings.project_id
@@ -134,7 +135,7 @@ module Qc
     end
 
     def run_backtest
-      show_title('Run backtest')
+      show_title 'Run backtest'
       return false unless validate_initialized_project!
 
       unless project_settings.last_compile_id
@@ -143,6 +144,21 @@ module Qc
       end
 
       do_run_backtest
+    end
+
+    def run_open
+      show_title 'Open backtest results'
+      return open_results_in_quant_connect
+    end
+
+    def open_results_in_quant_connect
+      return false unless validate_initialized_project!
+      return false unless validate_on_mac!
+
+      open_workflow_file = ::File.expand_path ::File.join(__dir__, '..', '..', 'automator', 'open-qc-results.workflow')
+      open_command = "automator -i #{project_settings.project_id} #{open_workflow_file}"
+      puts "Opening backtest results for project #{project_settings.project_id}"
+      system open_command
     end
 
     def do_run_default
@@ -165,6 +181,7 @@ module Qc
     def do_run_backtest
       backtest = quant_connect_proxy.create_backtest project_settings.project_id, project_settings.last_compile_id, "backtest-#{project_settings.last_compile_id}"
       puts "Backtest for compile #{project_settings.last_compile_id} sent to the queue with id #{backtest.id}"
+      open_results_in_quant_connect if options.open_results
 
       begin
         if backtest.started?
@@ -257,6 +274,16 @@ module Qc
     def validate_initialized_project!
       puts "Please run 'qc init' to initialize your project" unless initialized_project?
       initialized_project?
+    end
+
+    def validate_on_mac!
+      puts "This command is only supported in macos" unless macos?
+      macos?
+    end
+
+    def macos?
+      host_os = RbConfig::CONFIG['host_os']
+      host_os =~ /darwin|mac os/
     end
 
     def initialized_project?

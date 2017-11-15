@@ -39,7 +39,7 @@ qc [command]
 
 The supported commands are:
 
-| Command| description|
+| Command| Description|
 | -- | -- |
 | `qc login`| It will ask for the api credentials you can find in [your QuantConnect account page](https://www.quantconnect.com/account). They will be stored in `~/.qc`. You only need to login once. |  
 | `qc logout`| Logout from QuantConnect clearing the credentials stored locally.  |

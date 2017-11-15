@@ -22,12 +22,14 @@ gem install qc
 
 ### Default (no command provided)
 
+When no command is provided, it will push your changes to QuantConnect, compile the project and run a backtest.
+
 ```shell
 qc
 qc --open # To open the results in QuantConnect
 ```
 
-When no command is provided, it will execute `push`, `compile` and `backtest` in sequence.
+This is equivalent to executing `qc push`, `qc compile` and `qc backtest` in sequence.
 
 ### Single commands 
 
@@ -45,18 +47,18 @@ The supported commands are:
 | `qc push` | Send your local files to QuantConnect. It will only send the files that changed since the last time you run the command |
 | `qc compile` | Compile your project in QuantConnect |
 | `qc backtest` | Run the backtest of your algorithm in QuantConnect |
-| `qc backtest` | Open the latest results in QuantConnect (only MacOS)|
+| `qc open` | Open the latest results in QuantConnect (only MacOS)|
 
 ### Opening the results in QuantConnect (only MacOS)
 
-If you pass `--open` after running a backtest it will open the results in QuantConnect while the backtest is running:
+If you pass `--open` when running a backtest, it will open the results in QuantConnect while the backtest is running:
 
 ```shell
 qc --open
 qc backtest --open
 ```
 
-This option only works on MacOS. quantconnect.com currently doesn't offer an URL endpoint to open backtest results. In MacOS, it will use an Automator workflow that will open the project and show its latest results by simulating a click on the corresponding option. See [this discussion](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/lean-engine/7AiEl3RVv38/PGnFQzBXAQAJ). 
+**This option only works on MacOS**. quantconnect.com currently doesn't offer an URL endpoint to open backtest results. In MacOS, it will use an Automator workflow that will open the project and show its latest results by simulating a click on the corresponding option. See [this discussion](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/lean-engine/7AiEl3RVv38/PGnFQzBXAQAJ). 
 
 ## Development
 

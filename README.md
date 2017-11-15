@@ -20,7 +20,18 @@ gem install qc
 
 ## Usage
 
+### Default (no command provided)
+
+```shell
+qc
+qc --open # To open the results in QuantConnect
 ```
+
+When no command is provided, it will execute `push`, `compile` and `backtest` in sequence.
+
+### Single commands 
+
+```shell
 qc [command]
 ```
 
@@ -34,12 +45,18 @@ The supported commands are:
 | `qc push` | Send your local files to QuantConnect. It will only send the files that changed since the last time you run the command |
 | `qc compile` | Compile your project in QuantConnect |
 | `qc backtest` | Run the backtest of your algorithm in QuantConnect |
+| `qc backtest` | Open the latest results in QuantConnect (only MacOS)|
 
-When no command is provided, it will execute `push`, `compile` and `backtest` in sequence.
+### Opening the results in QuantConnect (only MacOS)
 
-## Todo
+If you pass `--open` after running a backtest it will open the results in QuantConnect while the backtest is running:
 
-- Open your backtests after they have finished
+```shell
+qc --open
+qc backtest --open
+```
+
+This option only works on MacOS. quantconnect.com currently doesn't offer an URL endpoint to open backtest results. In MacOS, it will use an Automator workflow that will open the project and show its latest results by simulating a click on the corresponding option. See [this discussion](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/lean-engine/7AiEl3RVv38/PGnFQzBXAQAJ). 
 
 ## Development
 

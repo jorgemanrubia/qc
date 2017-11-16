@@ -257,7 +257,7 @@ module Qc
     end
 
     def changed_files
-      all_files = Dir["*.{#{project_settings.file_extensions}}"]
+      all_files = Dir["**/*.{#{project_settings.file_extensions}}"]
 
       return all_files unless project_settings.last_sync_at
 

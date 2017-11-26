@@ -1,5 +1,5 @@
 module Qc
-  class Console
+  class CLI
     def initialize
     end
 

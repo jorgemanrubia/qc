@@ -3,5 +3,5 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require 'qc'
 
-status = Qc::Console.new.run(ARGV) ? 0 : 1
+status = Qc::CLI.new.run(ARGV) ? 0 : 1
 exit status

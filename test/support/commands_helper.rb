@@ -20,7 +20,7 @@ module CommandsHelper
 
   def do_run_command(arguments)
     Dir.chdir project_dir do
-      Qc::Console.new.run(arguments)
+      Qc::CLI.new.run(arguments)
     end
   end
 

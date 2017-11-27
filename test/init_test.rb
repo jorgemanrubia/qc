@@ -7,7 +7,7 @@ class InitTest < SystemTest
     assert_equal 1, last_command.exit_status
   end
 
-  def test_init_ask_for_project_and_store_it_in_settings_with_default_extension
+  def test_init_asks_for_project_and_store_it_in_settings_with_default_extension
     sign_in
 
     type_when_prompted '2', '' do
@@ -20,7 +20,7 @@ class InitTest < SystemTest
     assert_equal 0, last_command.exit_status
   end
 
-  def test_init_store_settings_with_custom_extension
+  def test_init_stores_settings_with_custom_extension
     sign_in
     type_when_prompted '1', 'java,rb' do
       run_command 'qc init'

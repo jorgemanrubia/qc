@@ -216,8 +216,7 @@ module Qc
 
     def ask_for_value(question)
       puts question
-      v = STDIN.gets
-      v.chomp
+      STDIN.gets.chomp
     end
 
     def ask_for_project

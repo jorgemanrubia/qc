@@ -12,6 +12,8 @@ Qc is distributed as a ruby gem. You can install it with:
 gem install qc
 ```
 
+Qc requires Ruby version 2.3 or greater.
+
 ## Workflow
 
 1. Run `qc login` for introducing your QuantConnect credentials

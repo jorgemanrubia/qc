@@ -250,7 +250,7 @@ module Qc
 
       changed_files.each do |file|
         puts "Uploading #{file}..."
-        content = ::File.read file
+        content = ::File.read(file).strip
         quant_connect_proxy.put_file project_settings.project_id, ::File.basename(file), content
       end
     end

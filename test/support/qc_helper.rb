@@ -46,10 +46,10 @@ module QcHelper
 
   def assert_file_was_uploaded(file_name)
     source_file = in_project_dir(file_name)
-    source_file_content = ::File.read source_file
+    source_file_content = ::File.read(source_file).strip
     file = qc_proxy.read_file project_settings.project_id, file_name
     assert_equal file_name, file.name
-    assert_equal source_file_content.strip, file.content.strip
+    assert_equal source_file_content, file.content
   end
 
   def prepare_local_project_linked_with_qc_with_files(*files)

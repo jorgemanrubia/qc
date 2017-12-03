@@ -33,4 +33,11 @@ class PushTest < SystemTest
     refute_match(/Uploading file_1.cs.../, last_command.output)
     assert_match(/Uploading file_2.cs.../, last_command.output)
   end
+
+  def test_ignored_files_should_not_be_pushed
+    prepare_local_files 'AssemblyInfo.cs'
+    run_command 'qc push'
+
+    refute_match(/Uploading AssemblyInfo.cs/, last_command.output)
+  end
 end

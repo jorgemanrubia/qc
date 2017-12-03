@@ -1,6 +1,7 @@
 module Qc
   class CommandRunner
     DEFAULT_FILE_EXTENSIONS = 'cs,py'
+    DEFAULT_IGNORED_FILES = ['AssemblyInfo.cs']
 
     SUPPORTED_COMMANDS =%i(login logout init push compile backtest open)
     COMPILE_POLLING_DELAY_IN_SECONDS = 2
@@ -43,8 +44,15 @@ module Qc
       if ::File.exist?(project_settings_file)
         YAML.load(::File.open(project_settings_file))
       else
-        Qc::ProjectSettings.new
+        build_fresh_project_settings
       end
+    end
+
+    def build_fresh_project_settings
+      Qc::ProjectSettings.new.tap do |project_settings|
+        project_settings.ignored_files = DEFAULT_IGNORED_FILES
+      end
+
     end
 
     def logged_in?
@@ -256,13 +264,30 @@ module Qc
     end
 
     def changed_files
-      all_files = Dir["**/*.{#{project_settings.file_extensions}}"]
+      all_files = fetch_all_files
 
       return all_files unless project_settings.last_sync_at
 
-      all_files.find_all do |file|
+      changed_files = all_files.find_all do |file|
         ::File.mtime(file) > project_settings.last_sync_at
       end
+
+      changed_files
+    end
+
+    def fetch_all_files
+      Dir["**/*.{#{project_settings.file_extensions}}"].reject{|file| ignore_file?(file) }
+    end
+
+    def ignore_file?(file)
+      puts ignored_files.inspect
+      ignored_files.find do |ignored_file|
+        file =~ /#{ignored_file}/
+      end
+    end
+
+    def ignored_files
+      project_settings.ignored_files || DEFAULT_IGNORED_FILES
     end
 
     def save_current_timestamp

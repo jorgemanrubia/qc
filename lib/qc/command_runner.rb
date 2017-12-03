@@ -44,15 +44,14 @@ module Qc
       if ::File.exist?(project_settings_file)
         YAML.load(::File.open(project_settings_file))
       else
-        build_fresh_project_settings
+        create_project_settings
       end
     end
 
-    def build_fresh_project_settings
+    def create_project_settings
       Qc::ProjectSettings.new.tap do |project_settings|
         project_settings.ignored_files = DEFAULT_IGNORED_FILES
       end
-
     end
 
     def logged_in?

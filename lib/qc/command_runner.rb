@@ -280,7 +280,6 @@ module Qc
     end
 
     def ignore_file?(file)
-      puts ignored_files.inspect
       ignored_files.find do |ignored_file|
         file =~ /#{ignored_file}/
       end

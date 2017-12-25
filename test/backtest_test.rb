@@ -20,6 +20,7 @@ class CompileTest < SystemTest
     run_command 'qc backtest'
     assert_match(/Waiting for backtest to start/i, last_command.output)
     assert_match(/Backtest finished/i, last_command.output)
+    assert_match(/SharpeRatio/i, last_command.output)
     assert_equal 0, last_command.exit_status
   end
 

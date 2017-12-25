@@ -3,9 +3,9 @@ module Qc
     DEFAULT_FILE_EXTENSIONS = 'cs,py'
     DEFAULT_IGNORED_FILES = ['AssemblyInfo.cs']
 
-    SUPPORTED_COMMANDS =%i(login logout init push compile backtest open)
+    SUPPORTED_COMMANDS = %i(login logout init push compile backtest open)
     COMPILE_POLLING_DELAY_IN_SECONDS = 2
-    BACKTEST_DELAY_IN_SECONDS = 3
+    BACKTEST_DELAY_IN_SECONDS = 4
 
     attr_reader :quant_connect_proxy, :options
     attr_accessor :project_settings
@@ -189,19 +189,21 @@ module Qc
       backtest = quant_connect_proxy.create_backtest project_settings.project_id, project_settings.last_compile_id, "backtest-#{project_settings.last_compile_id}"
       puts "Backtest for compile #{project_settings.last_compile_id} sent to the queue with id #{backtest.id}"
       open_results_in_quant_connect if options.open_results
-
+      puts "Waiting for backtest to start..."
+      last_completed_percentage = nil
       begin
-        if backtest.started?
-          puts "Waiting for backtest to finish (#{backtest.progress_in_percentage}\% completed)..."
-        else
-          puts "Waiting for backtest to start..."
+        if last_completed_percentage != backtest.progress
+          puts "Completed: #{backtest.progress}%..."
         end
+        last_completed_percentage = backtest.progress
         backtest = quant_connect_proxy.read_backtest project_settings.project_id, backtest.id
-        sleep BACKTEST_DELAY_IN_SECONDS if backtest.completed?
+        sleep BACKTEST_DELAY_IN_SECONDS unless backtest.completed?
       end while !backtest.completed?
 
       puts "Backtest finished" if backtest.success?
       puts "Backtest failed" if backtest.error?
+
+      puts backtest.to_s
 
       project_settings.last_backtest_id = backtest.id
       save_project_settings
@@ -231,12 +233,12 @@ module Qc
       projects = quant_connect_proxy.list_projects
       puts "Select the project you want to associate with this directory"
       projects.each.with_index do |project, index|
-        puts "[#{index+1}] - #{project.name}"
+        puts "[#{index + 1}] - #{project.name}"
       end
       index = ask_for_value "Project number?"
       index = index.to_i
-      if index >=1 && index < projects.length + 1
-        projects[index-1]
+      if index >= 1 && index < projects.length + 1
+        projects[index - 1]
       else
         puts "Invalid value (please type a number between #{1} and #{projects.length})"
         ask_for_project
@@ -275,7 +277,7 @@ module Qc
     end
 
     def fetch_all_files
-      Dir["**/*.{#{project_settings.file_extensions}}"].reject{|file| ignore_file?(file) }
+      Dir["**/*.{#{project_settings.file_extensions}}"].reject {|file| ignore_file?(file)}
     end
 
     def ignore_file?(file)

@@ -14,9 +14,9 @@ class InitTest < SystemTest
       run_command 'qc init'
     end
 
-    assert_match(/My first C# project/, last_command.output)
+    assert_match(/Basic Template Algorithm/, last_command.output)
 
-    assert_stored_project_settings project_id: '799895', file_extensions: 'cs,py'
+    assert_stored_project_settings project_id: '947315', file_extensions: 'cs,py'
     assert_equal 0, last_command.exit_status
   end
 

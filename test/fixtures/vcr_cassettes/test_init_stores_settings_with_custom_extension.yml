@@ -12,9 +12,9 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      - rest-client/2.0.2 (darwin16.7.0 x86_64) ruby/2.4.2p198
       Timestamp:
-      - '1511782434'
+      - '1514221479'
       Content-Length:
       - '0'
       Content-Type:
@@ -22,7 +22,7 @@ http_interactions:
       Host:
       - www.quantconnect.com
       Authorization:
-      - Basic NDE2ODc6OGNkODZiOGIwNDM2NmI5YTk0OWI0OWYzNzE5Zjc1YmQ4ZDE0ODgzMTQ5ZTUyYjA1OTBhNjg1MGQ3YjAxNmYyMg==
+      - Basic NDE2ODc6YTRjZTg0ZjkxODgyYjU2MmQyMTQ3Mzg1ODQ5MDBmMTM0ZmNlN2ZiY2Q5YWQ2Mjk0ZmNhMDNiYzU2YWFmMDRlNA==
   response:
     status:
       code: 200
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 27 Nov 2017 11:33:54 GMT
+      - Mon, 25 Dec 2017 17:05:41 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -41,9 +41,9 @@ http_interactions:
       X-Powered-By:
       - PHP/7.0.18-0ubuntu0.16.04.1
       Set-Cookie:
-      - PHPSESSID=sqqls84vs2lpe16nk6m5sddao5; expires=Mon, 27-Nov-2017 16:33:54 GMT;
+      - PHPSESSID=0h8ea88e8uo4aknnch790h8c87; expires=Mon, 25-Dec-2017 22:05:40 GMT;
         Max-Age=18000; path=/
-      - QC_Origin=quantconnect; expires=Wed, 29-Nov-2017 11:33:54 GMT; Max-Age=172800;
+      - QC_Origin=quantconnect; expires=Wed, 27-Dec-2017 17:05:41 GMT; Max-Age=172800;
         path=/; domain=.quantconnect.com
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -61,7 +61,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"success":true}'
     http_version: 
-  recorded_at: Mon, 27 Nov 2017 11:33:54 GMT
+  recorded_at: Mon, 25 Dec 2017 17:05:40 GMT
 - request:
     method: get
     uri: https://www.quantconnect.com/api/v2/projects/read
@@ -74,9 +74,9 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.0.0 x86_64) ruby/2.4.2p198
+      - rest-client/2.0.2 (darwin16.7.0 x86_64) ruby/2.4.2p198
       Timestamp:
-      - '1511782434'
+      - '1514221540'
       Content-Length:
       - '0'
       Content-Type:
@@ -84,7 +84,7 @@ http_interactions:
       Host:
       - www.quantconnect.com
       Authorization:
-      - Basic NDE2ODc6OGNkODZiOGIwNDM2NmI5YTk0OWI0OWYzNzE5Zjc1YmQ4ZDE0ODgzMTQ5ZTUyYjA1OTBhNjg1MGQ3YjAxNmYyMg==
+      - Basic NDE2ODc6YWJkMWU1OTE1MWEwYzlkMDMxY2E5MDEwNmUxZTUyODlhZDk2ODEyOTY0MWFiMWRlNzAwMmIzNGY5NGJmZGQ4YQ==
   response:
     status:
       code: 200
@@ -93,19 +93,19 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 27 Nov 2017 11:33:55 GMT
+      - Mon, 25 Dec 2017 17:05:41 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1852'
+      - '1921'
       Connection:
       - keep-alive
       X-Powered-By:
       - PHP/7.0.18-0ubuntu0.16.04.1
       Set-Cookie:
-      - PHPSESSID=9j30h9a8spl5d3a2f3m6n3ivd3; expires=Mon, 27-Nov-2017 16:33:55 GMT;
+      - PHPSESSID=u31s9osov6cbe86dctl8tgmds2; expires=Mon, 25-Dec-2017 22:05:41 GMT;
         Max-Age=18000; path=/
-      - QC_Origin=quantconnect; expires=Wed, 29-Nov-2017 11:33:55 GMT; Max-Age=172800;
+      - QC_Origin=quantconnect; expires=Wed, 27-Dec-2017 17:05:41 GMT; Max-Age=172800;
         path=/; domain=.quantconnect.com
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -121,13 +121,15 @@ http_interactions:
       - max-age=31536000; includeSubDomains
     body:
       encoding: UTF-8
-      string: '{"projects":[{"projectId":"816916","name":"my project","modified":"2017-11-12
-        21:39:50","created":"2017-11-12 11:01:51","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
-        Test User"}],"leanVersionId":"2501","owner":true,"channelId":"P816916-1b4645bacf09f7bdc936cb48bf04e895","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]},{"projectId":"799895","name":"My
-        first C# project","modified":"2017-11-12 12:03:19","created":"2017-11-04 23:02:19","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
-        Test User"}],"leanVersionId":"2501","owner":true,"channelId":"P799895-853c8c787799c4642c9c8b5181581a69","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]}],"versions":[{"id":"2501","sref":"refs\/heads\/master","slean":"de724c325b2a9897eb412717c855e75872ab7727","sleancloud":"bb4bb1149fbbaddfc1fd649d7f6c8be9daf246cb","sdescription":"Upgrades
-        to backend QuantConnect operations","sname":"master","bpublic":"1","itimestamp":"2017-11-22
-        18:22:41"}],"success":true}'
+      string: '{"projects":[{"projectId":"947467","name":"my project","modified":"2017-12-25
+        17:04:26","created":"2017-12-25 17:04:26","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
+        Test User"}],"leanVersionId":"2731","owner":true,"channelId":"P947467-d2a710b3c93a2107f9506bc3c30ca452","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]},{"projectId":"947315","name":"
+        Basic Template Algorithm","modified":"2017-12-25 15:33:29","created":"2017-12-25
+        15:32:15","ownerId":"41687","language":"C#","collaborators":[{"id":0,"uid":"41687","blivecontrol":true,"epermission":"write","profileimage":"https:\/\/cdn.quantconnect.com\/web\/i\/users\/profile\/default.jpg","name":"Quantconnect
+        Test User"}],"leanVersionId":"2731","owner":true,"channelId":"P947315-f1344c670c20c42f306bf09e7b542bb3","parameters":[],"liveResults":{"eStatus":"Undefined","sDeployID":null,"sServerType":null,"dtLaunched":null,"dtStopped":null,"sBrokerage":null,"sSecurityTypes":null,"dUnrealized":null,"dfees":null,"dnetprofit":null,"dEquity":null,"dHoldings":null,"dCapital":null,"dVolume":null,"iTrades":null,"sErrorMessage":null},"libraries":[]}],"versions":[{"id":"2731","sref":"refs\/heads\/master","slean":"721972c6b67ffd87efee0a8f01f0addf28426c31","sleancloud":"d66d27cb78b3fe9feb83545783c50588a4518b22","sdescription":"Merge
+        pull request #1432 from StefanoRaggi\/ib-moc-fix<br\/>Fix IB error with Market
+        On Close (MOC) orders","sname":"master","bpublic":"1","itimestamp":"2017-12-23
+        00:48:34"}],"success":true}'
     http_version: 
-  recorded_at: Mon, 27 Nov 2017 11:33:55 GMT
+  recorded_at: Mon, 25 Dec 2017 17:05:41 GMT
 recorded_with: VCR 3.0.3

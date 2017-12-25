@@ -200,15 +200,18 @@ module Qc
         sleep BACKTEST_DELAY_IN_SECONDS unless backtest.completed?
       end while !backtest.completed?
 
-      puts "Backtest finished" if backtest.success?
-      puts "Backtest failed" if backtest.error?
-
-      puts backtest.to_s
+      show_backtest_results(backtest)
 
       project_settings.last_backtest_id = backtest.id
       save_project_settings
 
       backtest.success?
+    end
+
+    def show_backtest_results(backtest)
+      puts "Backtest finished" if backtest.success?
+      puts "Backtest failed" if backtest.error?
+      puts backtest.to_s
     end
 
     def valid_login?

@@ -5,5 +5,11 @@
 - Removes `awesome-print` dependency #2
 - Adds option to ignore files in `.qc/settings.yml` #4
 
+## 6.0.5
+
+- Wait for the backtest to finish when running `qc backtest`
+- Shows summary of performance statistics after running backtest
+
+
 
 

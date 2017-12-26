@@ -6,7 +6,7 @@ class TradervueImporter
 
   def initialize(username, password)
     @auth = { :username => username, :password => password }
-    @user_agent = "Ruby sample application (https://github.com/tradervue/ruby-sample)"
+    @user_agent = "Qc - QuantConnect command line tool (https://github.com/jorgemanrubia/qc)"
   end
 
   def status

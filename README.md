@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/jorgemanrubia/qc.svg?branch=master)](https://travis-ci.org/jorgemanrubia/qc)
 
-Qc is a commandline tool that lets you sync and run your [QuantConnect](https://www.quantconnect.com) backtests.
+Qc is a command line tool that lets you sync and run your [QuantConnect](https://www.quantconnect.com) backtests.
 
 ## Installation
 
@@ -33,7 +33,7 @@ qc --open # To open the results in QuantConnect while running the backtest
 
 This is equivalent to executing `qc push`, `qc compile` and `qc backtest` in sequence.
 
-### Single commands 
+### Single commands
 
 ```shell
 qc [command]
@@ -43,7 +43,7 @@ The supported commands are:
 
 | Command| Description|
 | -- | -- |
-| `qc login`| It will ask for the api credentials you can find in [your QuantConnect account page](https://www.quantconnect.com/account). They will be stored in `~/.qc`. You only need to login once. |  
+| `qc login`| It will ask for the API credentials you can find in [your QuantConnect account page](https://www.quantconnect.com/account). They will be stored in `~/.qc`. You only need to login once. |
 | `qc logout`| Logout from QuantConnect clearing the credentials stored locally.  |
 | `qc init`| Initialize the directory of the algo project you are working on. It will ask for a QuantConnect project to link your algo with. You need to run this once for every project you want to sync with QuantConnect. |
 | `qc push` | Send your local files to QuantConnect. It will only send the files that changed since the last time you run the command |
@@ -60,7 +60,26 @@ qc --open
 qc backtest --open
 ```
 
-**This option only works in MacOS**. quantconnect.com currently doesn't offer an URL endpoint to open backtest results. In MacOS, it will use an Automator workflow that will open the project and show its latest results by simulating a click on the corresponding option. [See this discussion](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/lean-engine/7AiEl3RVv38/PGnFQzBXAQAJ). 
+**This option only works in MacOS**. quantconnect.com currently doesn't offer an URL endpoint to open backtest results. In MacOS, it will use an Automator workflow that will open the project and show its latest results by simulating a click on the corresponding option. [See this discussion](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/lean-engine/7AiEl3RVv38/PGnFQzBXAQAJ).
+
+### Support for importing trades into Tradervue (experimental)
+
+[Tradervue](https://www.tradervue.com) is a powerful trading journal system. It can be very helpful for analyzing your backtests. In addition to a ton of analytics and reporting features, it lets you see your trade executions in charts.
+
+Qc lets you import each backtest results into tradervue. In tradervue, it will tag the executions with the backtest name.
+
+To enable tradervue imports you must:
+
+- Use the `--tradervue` flag when running your backtest
+- Set `TRADERVUE_LOGIN` and `TRADERVUE_PASSWORD` as environment variables
+
+For example:
+
+```shell
+TRADERVUE_LOGIN=<your tradervue login> TRADERVUE_PASSWORD=<your tradervue password> qc --tradervue
+```
+
+After running the backtest, it will open the results in tradervue automatically (only MacOS).
 
 ## Development
 

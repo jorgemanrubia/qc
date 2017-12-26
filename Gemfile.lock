@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    qc (0.6.5)
+    qc (0.6.6)
       httparty (~> 0.15.6)
       rest-client (~> 2.0.2)
       vcr (~> 3.0.3)

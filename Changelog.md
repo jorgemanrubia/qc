@@ -10,6 +10,13 @@
 - Wait for the backtest to finish when running `qc backtest`
 - Shows summary of performance statistics after running backtest
 
+## 6.0.6
+
+- Better labeling for backtests. Intead of using the long id, it will use `<project folder name>-<counter>` now.
+- Add support for importing trades into Tradervue
+
+
+
 
 
 

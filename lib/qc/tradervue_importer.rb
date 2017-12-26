@@ -1,3 +1,4 @@
+# Extracted from https://github.com/tradervue/ruby-sample
 class TradervueImporter
   include HTTParty
 

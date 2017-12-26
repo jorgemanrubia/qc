@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "rest-client", "~> 2.0.2"
   spec.add_runtime_dependency "vcr", "~> 3.0.3"
   spec.add_runtime_dependency "webmock", "~> 3.1.0"
+  spec.add_runtime_dependency "httparty", "~> 0.15.6"
   spec.add_development_dependency "awesome_print"
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"

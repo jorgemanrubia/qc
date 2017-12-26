@@ -45,6 +45,10 @@ module Qc
           parsed_options.open_results = true
         end
 
+        options.on("-t", "--tradervue", "Import the results into Tradervue. You must set env vars TRADERVUE_LOGIN and TRADERVUE_PASSWORD") do
+          parsed_options.import_into_tradervue = true
+        end
+
         options.on("-h", "--help", "Show this message") do
           puts options
           exit 0

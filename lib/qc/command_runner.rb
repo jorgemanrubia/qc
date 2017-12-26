@@ -50,6 +50,7 @@ module Qc
 
     def create_project_settings
       Qc::ProjectSettings.new.tap do |project_settings|
+        project_settings.execution_count = 1
         project_settings.ignored_files = DEFAULT_IGNORED_FILES
       end
     end
@@ -186,9 +187,11 @@ module Qc
     end
 
     def do_run_backtest
-      backtest = quant_connect_proxy.create_backtest project_settings.project_id, project_settings.last_compile_id, "backtest-#{project_settings.last_compile_id}"
-      puts "Backtest for compile #{project_settings.last_compile_id} sent to the queue with id #{backtest.id}"
+      backtest = quant_connect_proxy.create_backtest project_settings.project_id, project_settings.last_compile_id, current_backtest_label
+      puts "Backtest '#{current_backtest_label}' for compile #{project_settings.last_compile_id} sent to the queue with id #{backtest.id}"
+
       open_results_in_quant_connect if options.open_results
+
       puts "Waiting for backtest to start..."
       last_completed_percentage = nil
       begin
@@ -200,12 +203,30 @@ module Qc
         sleep BACKTEST_DELAY_IN_SECONDS unless backtest.completed?
       end while !backtest.completed?
 
-      show_backtest_results(backtest)
-
-      project_settings.last_backtest_id = backtest.id
-      save_project_settings
+      show_backtest_results backtest
+      update_project_settings_after_running_backtest(backtest)
+      import_backtest_results_into_tradervue(backtest) if options.import_into_tradervue
 
       backtest.success?
+    end
+
+    def update_project_settings_after_running_backtest(backtest)
+      project_settings.last_backtest_id = backtest.id
+      increase_execution_count
+      save_project_settings
+    end
+
+    def increase_execution_count
+      project_settings.execution_count ||= 0
+      project_settings.execution_count += 1
+    end
+
+    def current_backtest_label
+      @current_backtest_label ||= "#{project_name}-#{project_settings.execution_count}"
+    end
+
+    def project_name
+      @project_name ||= ::File.basename(::File.expand_path(::File.join(Util.project_dir, '..')))
     end
 
     def show_backtest_results(backtest)
@@ -315,6 +336,50 @@ module Qc
 
     def initialized_project?
       project_settings.project_id
+    end
+
+    def import_backtest_results_into_tradervue(backtest)
+      show_title 'Importing results into Tradervue'
+
+      raise "You need to set TRADERVUE_LOGIN and TRADERVUE_PASSWORD" unless tradervue_login && tradervue_password
+      orders = backtest.result['Orders'].values
+      orders_as_tradervue_executions = orders.collect do |order|
+        {
+            "datetime" => order['Time'],
+            "symbol" => order['Symbol']['Value'],
+            "quantity" => order['Quantity'],
+            "price" => order['Price'],
+            "option" => '',
+            "commission" => '',
+            "transfee" => 0,
+            "ecnfee" => 0
+        }
+      end
+
+      result = tradervue_importer.import_data(orders_as_tradervue_executions, account_tag: current_backtest_label)
+      puts result
+      puts "#{orders_as_tradervue_executions.length} orders imported successfully"
+      open_results_in_tradervue(backtest)
+    end
+
+    def open_results_in_tradervue(backtest)
+      return false unless validate_on_mac!
+
+      url = "https://www.tradervue.com/trades?tag=#{current_backtest_label}"
+      puts "Opening results in tradervue: #{url}"
+      system "open #{url}"
+    end
+
+    def tradervue_importer
+      @tradervue_importer ||= TradervueImporter.new(tradervue_login, tradervue_password)
+    end
+
+    def tradervue_password
+      ENV['TRADERVUE_PASSWORD']
+    end
+
+    def tradervue_login
+      ENV['TRADERVUE_LOGIN']
     end
   end
 end

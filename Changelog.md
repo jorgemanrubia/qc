@@ -15,6 +15,11 @@
 - Better labeling for backtests. Intead of using the long id, it will use `<project folder name>-<counter>` now.
 - Add support for importing trades into Tradervue
 
+## 6.0.7
+
+- Fix: Wrong offset in times imported to Tradervue
+
+
 
 
 

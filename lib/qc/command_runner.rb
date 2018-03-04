@@ -1,3 +1,5 @@
+require 'date'
+
 module Qc
   class CommandRunner
     DEFAULT_FILE_EXTENSIONS = 'cs,py'
@@ -345,7 +347,7 @@ module Qc
       orders = backtest.result['Orders'].values
       orders_as_tradervue_executions = orders.collect do |order|
         {
-            "datetime" => order['Time'],
+            "datetime" => in_est_timezone(order),
             "symbol" => order['Symbol']['Value'],
             "quantity" => order['Quantity'],
             "price" => order['Price'],
@@ -360,6 +362,11 @@ module Qc
       puts result
       puts "#{orders_as_tradervue_executions.length} orders imported successfully"
       open_results_in_tradervue(backtest)
+    end
+
+    def in_est_timezone(order)
+      time = DateTime.parse order['Time']
+      time.to_time.utc.localtime("-05:00")
     end
 
     def open_results_in_tradervue(backtest)
